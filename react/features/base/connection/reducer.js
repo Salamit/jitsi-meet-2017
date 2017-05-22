@@ -76,7 +76,7 @@ function _constructOptions(domain: string) {
     // HTTP scheme for the BOSH URL with beta.meet.jit.si on mobile.
     let boshProtocol;
 
-    if (domain === 'beta.meet.jit.si') {
+    if (domain === 'meet.buddhikajay.pro/') {
         if (typeof window === 'object') {
             const windowLocation = window.location;
 
