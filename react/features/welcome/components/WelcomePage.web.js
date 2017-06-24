@@ -233,18 +233,6 @@ class WelcomePage extends AbstractWelcomePage {
                     </div>
                 </div>
                 <div id = 'brand_header' />
-                <input
-                    checked = { !this.state.enableWelcomePage }
-                    id = 'disable_welcome'
-                    name = 'checkbox'
-                    onChange = { this._onDisableWelcomeChange }
-                    type = 'checkbox' />
-                <label
-                    className = 'disable_welcome_position'
-                    htmlFor = 'disable_welcome'>
-                    { t('welcomepage.disable') }
-                </label>
-                <div id = 'header_text' />
             </div>
         );
     }
@@ -258,14 +246,6 @@ class WelcomePage extends AbstractWelcomePage {
     _renderMain() {
         return (
             <div id = 'welcome_page_main'>
-                <div id = 'features'>
-                    {
-                        this._renderFeatureRow(1, 5)
-                    }
-                    {
-                        this._renderFeatureRow(5, 9)
-                    }
-                </div>
             </div>
         );
     }

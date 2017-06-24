@@ -120,10 +120,13 @@
 
 #welcome_page_header
 {
-    background-image: url(../images/welcome_page/pattern-header.png);
-    height: 290px;
+    background-image: url(../images/welcome_page/landingpage.jpg);
+    background-position: bottom;
+    background-repeat: no-repeat;
+    height: 100%;
     width: 100%;
     position: absolute;
+    background-color: #020B14;
 }
 
 #welcome_page_main
