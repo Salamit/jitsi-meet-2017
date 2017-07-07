@@ -1,3 +1,4 @@
+
 #disable_welcome {
     display:none;
 }
@@ -23,6 +24,7 @@
     font-size: 16px;
     color: #acacac;
     z-index: $zindex2;
+
 }
 
 #disable_welcome:checked + label
@@ -41,13 +43,13 @@
 #enter_room_form {
     border-radius: 1px;
     background-color: #FFFFFF;
-    border: none;
+    border: black  1px ;
     -moz-border-radius: 1px;
     -webkit-border-radius: 1px;
     -webkit-appearance: none;
-    height: 55px;
+    //height: 55px;
     box-shadow: none;
-    float: left;
+    //float: left;
 }
 
 .domain-name
@@ -57,7 +59,7 @@
     line-height: 55px;
     font-size: 18px;
     font-weight: 500;
-    padding-left: 20px;
+    //padding-left: 20px;
     color: $defaultDarkColor;
 }
 
@@ -71,7 +73,7 @@
         line-height: 55px;
         font-weight: 500;
         box-shadow: none;
-        float: left;
+       // float: left;
         background-color: #FFFFFF;
         position: relative;
         z-index: $zindex2;
@@ -102,36 +104,42 @@
         font-size: 19px;
         padding-top: 6px;
         outline: none;
-        float:left;
+        //float:right;
         position: relative;
         z-index: $zindex2;
     }
 }
 
 #enter_room_container {
-    margin: 70px auto 0px auto;
-    display: table;
+    //margin: 70px auto 0px auto;
+    //display: table;
+
+    padding: 50px;
 }
 
 #enter_room{
-    float:left;
+    //float:left;
     padding-right: 5px;
 }
 
 #welcome_page_header
 {
-    background-image: url(../images/welcome_page/pattern-header.png);
-    height: 290px;
-    width: 100%;
-    position: absolute;
+    background-color:white;
+    height: 100vh;
+    width: 50%;
+    position: relative;
+    float: left;
+
 }
 
 #welcome_page_main
 {
-    background-image:url(../images/welcome_page/pattern-body.png);
-    width: 100%;
-    position: absolute;
-    margin-top: 290px;
+    //background-color: yellow;
+    width: 50%;
+    position: relative;
+    height: 100vh;
+    float: right;
+    background: gold;
 }
 
 #brand_header
@@ -154,8 +162,16 @@
 
 #features
 {
-    margin-top: 30px;
+    //margin-top: 30px;
     position: relative;
+    background-image: url(https://meet.buddhikajay.pro/images/sol/setProfileAllowAccess/video_conference_icon.png);
+    height: inherit;
+    background-repeat:no-repeat;
+    background-position:center ;
+
+    //background-color: goldenrod;
+    //background-repeat: no-repeat;
+
 }
 
 .feature_row
@@ -198,3 +214,63 @@
     line-height: 22px;
     font-weight: 200;
 }
+#javvii-container
+{
+display: block;
+
+}
+.gravatar{
+
+    display: block;
+    //float: left;
+    //width: 150px;
+    height: auto;
+    display: inline-block;
+
+    //padding: 10px;
+}
+.javvii{
+
+    display: block;
+    //float: left;
+    //width: 150px;
+    height:auto;
+    display: inline-block;
+
+    //padding: 10px;
+}
+.gravatar-box{
+
+    font-size: 15px;
+    border:  solid gray 1px ;
+    -webkit-appearance: none;
+
+    height: 55px;
+    //line-height: 55px;
+    font-weight: 500;
+    box-shadow: none;
+    //float: left;
+    background-color: #FFFFFF;
+    position: relative;
+    z-index: $zindex2;
+
+}
+.javvii-box{
+
+    font-size: 15px;
+    -webkit-appearance: none;
+    border:  solid gray 1px ;
+    height: 55px;
+    //line-height: 55px;
+    font-weight: 500;
+    box-shadow: none;
+    //float: right;
+    background-color: #FFFFFF;
+    position: relative;
+    z-index: $zindex2;
+}
+.custom-button{
+
+}
+
+

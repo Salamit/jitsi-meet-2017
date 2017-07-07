@@ -194,16 +194,29 @@ class WelcomePage extends AbstractWelcomePage {
 
         return (
             <div id = 'welcome_page_header'>
-                <Watermarks />
+                {/*<Watermarks />*/}
+
 
                 <div id = 'enter_room_container'>
+
                     <div id = 'enter_room_form'>
+
+                            <h1>
+                                Set Your Profile
+                            </h1>
+                            <p>No downloads required.Jitsi meet works directly your browser.<br/> false
+                            Simply share your conference URL with others to get started.
+                            </p>
+
+
+                        <h4>Create a URL</h4>
                         <div className = 'domain-name'>
                             {
                                 this._getDomain()
                             }
                         </div>
                         <div id = 'enter_room'>
+
                             <input
                                 autoFocus = { true }
                                 className = 'enter-room__field'
@@ -217,11 +230,34 @@ class WelcomePage extends AbstractWelcomePage {
                                 value = { this.state.room } />
 
                             { /* eslint-disable react/jsx-handler-names */ }
-                            <div
-                                className = 'icon-reload enter-room__reload'
-                                onClick = { this._updateRoomname } />
+                            {/*<div*/}
+                                {/*className = 'icon-reload enter-room__reload'*/}
+                                {/*onClick = { this._updateRoomname } />*/}
                             { /* eslint-enable react/jsx-handler-names */ }
 
+
+                        </div>
+                    <div className="javvii-container">
+                            <div>
+                            <div className="javvii">
+                                <label> DisplayName</label>
+                                <input
+                                    className="javvii-box"
+                                    placeholder="JAAVII"
+                                />
+                            </div>
+                            <div className="gravatar">
+                                <label>Gravatar Email</label>
+                                <input
+                                    className="gravatar-box"
+                                    placeholder="dummy@domain.com"
+                                />
+                            </div>
+                            </div>
+
+
+                        </div>
+                        <div>
                             <button
                                 className = 'enter-room__button'
                                 id = 'enter_room_button'
@@ -229,22 +265,28 @@ class WelcomePage extends AbstractWelcomePage {
                                 type = 'button'>
                                 { t('welcomepage.go') }
                             </button>
+
                         </div>
+
                     </div>
+
                 </div>
-                <div id = 'brand_header' />
-                <input
-                    checked = { !this.state.enableWelcomePage }
-                    id = 'disable_welcome'
-                    name = 'checkbox'
-                    onChange = { this._onDisableWelcomeChange }
-                    type = 'checkbox' />
-                <label
-                    className = 'disable_welcome_position'
-                    htmlFor = 'disable_welcome'>
-                    { t('welcomepage.disable') }
-                </label>
-                <div id = 'header_text' />
+                {/*<div id = 'brand_header' />*/}
+                {/*<input*/}
+                    {/*checked = { !this.state.enableWelcomePage }*/}
+                    {/*id = 'disable_welcome'*/}
+                    {/*name = 'checkbox'*/}
+                    {/*onChange = { this._onDisableWelcomeChange }*/}
+                    {/*type = 'checkbox' />*/}
+                {/*<label*/}
+                    {/*className = 'disable_welcome_position'*/}
+                    {/*htmlFor = 'disable_welcome'>*/}
+                    {/*{ t('welcomepage.disable') }*/}
+                {/*</label>*/}
+
+
+                {/*<div id = 'header_text' />*/}
+
             </div>
         );
     }
@@ -259,12 +301,12 @@ class WelcomePage extends AbstractWelcomePage {
         return (
             <div id = 'welcome_page_main'>
                 <div id = 'features'>
-                    {
-                        this._renderFeatureRow(1, 5)
-                    }
-                    {
-                        this._renderFeatureRow(5, 9)
-                    }
+                    {/*{*/}
+                        {/*this._renderFeatureRow(1, 5)*/}
+                    {/*}*/}
+                    {/*{*/}
+                        {/*this._renderFeatureRow(5, 9)*/}
+                    {/*}*/}
                 </div>
             </div>
         );
