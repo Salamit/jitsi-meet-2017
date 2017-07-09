@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.jitsi.meet;
+package eu.sabil.meet;
 
 import android.os.Bundle;
 
