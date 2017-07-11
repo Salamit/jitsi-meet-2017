@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId 'eu.sabil.meet'
-        versionCode Integer.parseInt("${version}")
+        versionCode Integer.parseInt("2")
         versionName "1.5.${version}"
 
         minSdkVersion rootProject.ext.minSdkVersion
