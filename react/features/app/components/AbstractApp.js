@@ -24,7 +24,7 @@ declare var APP: Object;
  * The default URL to open if no other was specified to {@code AbstractApp}
  * via props.
  */
-const DEFAULT_URL = 'https://meet.sabil.eu';
+const DEFAULT_URL = 'https://meet.remoteteachers.com';
 
 /**
  * Base (abstract) class for main App component.

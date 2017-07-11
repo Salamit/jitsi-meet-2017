@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package eu.sabil.meet;
+package com.remoteteachers.meet;
 
 import android.os.Bundle;
 

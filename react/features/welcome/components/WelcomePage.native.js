@@ -12,17 +12,17 @@ import styles from './styles';
 /**
  * The URL at which the privacy policy is available to the user.
  */
-const PRIVACY_URL = 'https://sabil.eu/privacy';
+const PRIVACY_URL = 'https://remoteteachers.com/privacy';
 
 /**
  * The URL at which the user may send feedback.
  */
-const SEND_FEEDBACK_URL = 'mailto:support@sabil.eu';
+const SEND_FEEDBACK_URL = 'mailto:support@remoteteachers.com';
 
 /**
  * The URL at which the terms (of service/use) are available to the user.
  */
-const TERMS_URL = 'https://sabil.eu/terms';
+const TERMS_URL = 'https://remoteteachers.com/terms';
 
 /**
  * The native container rendering the welcome page.
