@@ -173,7 +173,7 @@
         transform: translateX(-100%);
         width: $defaultToolbarSize;
         -webkit-transform: translateX(-100%);
-
+        background-image: url('../images/menu bg.png');
         .button.toggled:not(.icon-raised-hand):not(.button-active) {
             background: $toolbarSelectBackground;
             cursor: pointer;
