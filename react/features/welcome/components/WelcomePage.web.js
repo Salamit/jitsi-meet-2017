@@ -198,64 +198,77 @@ class WelcomePage extends AbstractWelcomePage {
 
 
                 <div id = 'enter_room_container'>
+                    <img src="data:image/gif;base64,R0lGODlhAQABAPcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAP8ALAAAAAABAAEAAAgEAP8FBAA7" id="welcome_page_logo">
 
+                    </img>
                     <div id = 'enter_room_form'>
-
-                            <h1>
+                        <p id="page_number">
+                            1/2
+                        </p>
+                            <h1 id="welcome_page_title">
                                 Set Your Profile
                             </h1>
-                            <p>No downloads required.Jitsi meet works directly your browser.<br/> false
+                            <p id="welcome_page_subtitle">No downloads required. Jitsi meet works directly within your browser.<br/>
                             Simply share your conference URL with others to get started.
                             </p>
 
 
-                        <h4>Create a URL</h4>
-                        <div className = 'domain-name'>
-                            {
-                                this._getDomain()
-                            }
-                        </div>
-                        <div id = 'enter_room'>
+                        <h4 className="welcomePageLabel">Create a URL</h4>
+                        <div className="domain-box">
+                            <div className = 'domain-name'>
+                                {
+                                    this._getDomain()
+                                }
+                            </div>
+                            <div id = 'enter_room'>
 
-                            <input
-                                autoFocus = { true }
-                                className = 'enter-room__field'
-                                data-room-name
-                                    = { this.state.generatedRoomname }
-                                id = 'enter_room_field'
-                                onChange = { this._onRoomChange }
-                                onKeyDown = { this._onKeyDown }
-                                placeholder = { this.state.roomPlaceholder }
-                                type = 'text'
-                                value = { this.state.room } />
-
-                            { /* eslint-disable react/jsx-handler-names */ }
-                            {/*<div*/}
-                                {/*className = 'icon-reload enter-room__reload'*/}
-                                {/*onClick = { this._updateRoomname } />*/}
-                            { /* eslint-enable react/jsx-handler-names */ }
-
-
-                        </div>
-                    <div className="javvii-container">
-                            <div>
-                            <div className="javvii">
-                                <label> DisplayName</label>
                                 <input
-                                    className="javvii-box"
+                                    autoFocus = { true }
+                                    className = 'enter-room__field'
+                                    data-room-name
+                                        = { this.state.generatedRoomname }
+                                    id = 'enter_room_field'
+                                    onChange = { this._onRoomChange }
+                                    onKeyDown = { this._onKeyDown }
+                                    placeholder = { this.state.roomPlaceholder }
+                                    type = 'text'
+                                    value = { this.state.room } />
+
+                                { /* eslint-disable react/jsx-handler-names */ }
+                                {/*<div*/}
+                                    {/*className = 'icon-reload enter-room__reload'*/}
+                                    {/*onClick = { this._updateRoomname } />*/}
+                                { /* eslint-enable react/jsx-handler-names */ }
+
+
+                            </div>
+                        </div>
+                    <div id="javvii-container">
+
+                            <div className="javvii">
+                                <div>
+                                    <label className="welcomePageLabel"> Display Name</label>
+                                </div>
+                                <input
+                                    className="javvii-box welcomePageInput"
                                     placeholder="JAAVII"
                                 />
                             </div>
                             <div className="gravatar">
-                                <label>Gravatar Email</label>
+                                <div>
+                                    <label className="welcomePageLabel">Gravatar Email</label>
+                                </div>
                                 <input
-                                    className="gravatar-box"
+                                    className="javvii-box welcomePageInput"
                                     placeholder="dummy@domain.com"
                                 />
                             </div>
-                            </div>
 
 
+
+                        </div>
+                        <div >
+                            <p id="dummy_text">Dummy Text can also placed here</p>
                         </div>
                         <div>
                             <button
@@ -263,7 +276,8 @@ class WelcomePage extends AbstractWelcomePage {
                                 id = 'enter_room_button'
                                 onClick = { this._onJoin }
                                 type = 'button'>
-                                { t('welcomepage.go') }
+                                {/*{ t('welcomepage.go') }*/}
+                                NEXT
                             </button>
 
                         </div>

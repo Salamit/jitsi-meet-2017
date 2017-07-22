@@ -34,12 +34,35 @@
     -webkit-user-select: none;
     -moz-user-select: none;
     background-repeat: no-repeat;
-    font-weight: 500;
+
     font-size: 16px;
+    font-weight: bold;
     color: #acacac;
     z-index: $zindex2;
 }
-
+#welcome_page_title{
+    font-weight: bold;
+    font-size: 38px;
+    margin-top: 0;
+}
+#welcome_page_subtitle{
+    font-size: 16px;
+    color: $lightGrey;
+    font-weight: bold;
+    margin-top: 15px;
+}
+#dummy_text{
+    font-size: 16px;
+    color: $lightGrey;
+    font-weight: bold;
+    margin-top: 15px;
+}
+#page_number{
+    font-size: 20px;
+    color: $lightGrey;
+    font-weight: bold;
+    margin-top: 15px;
+}
 #enter_room_form {
     border-radius: 1px;
     background-color: #FFFFFF;
@@ -55,24 +78,25 @@
 .domain-name
 {
     float: left;
-    height: 55px;
-    line-height: 55px;
+
+    //line-height: 55px;
     font-size: 18px;
-    font-weight: 500;
+    font-weight: bold;
     //padding-left: 20px;
-    color: $defaultDarkColor;
+    color: $lightGrey;
 }
 
 .enter-room {
     &__field {
-        font-size: 15px;
+        font-size: 18px;
         border: none;
         -webkit-appearance: none;
         width: 228px;
-        height: 55px;
-        line-height: 55px;
-        font-weight: 500;
+        //height: 55px;
+        //line-height: 55px;
+        font-weight: bold;
         box-shadow: none;
+        color: $darkGrey;
        // float: left;
         background-color: #FFFFFF;
         position: relative;
@@ -82,9 +106,10 @@
     &__reload {
         display: block;
         width: 30px;
-        color: #acacac;
+
         font-size: 1.9em;
-        line-height: 55px;
+        color: $darkGrey;
+        //line-height: 55px;
         z-index: $zindex3;
         float:  left;
         cursor: pointer;
@@ -92,17 +117,22 @@
     }
 
     &__button {
-        width: 73px;
-        height: 45px;
+        width: auto;
+        height: auto;
+        line-height: normal;
         background-color: #21B9FC;
-        moz-border-radius: 1px;
-        -webkit-border-radius: 1px;
+        moz-border-radius: 7px;
+        -webkit-border-radius: 7px;
+        border-radius: 7px;
         color: #ffffff;
-        font-weight: 600;
+        font-weight: 700;
         border: none;
-        margin-top: 5px;
-        font-size: 19px;
-        padding-top: 6px;
+
+        margin-top: 20px;
+        font-size: 22px;
+        padding: 14px;
+        padding-left: 20px;
+        padding-right: 20px;
         outline: none;
         //float:right;
         position: relative;
@@ -149,7 +179,18 @@
     height: 274px;
     margin: -110px auto 0px auto;
 }
+#welcome_page_logo{
+    background-image: url(../images/logo.png);
+    border:0;
 
+    width: 186px;
+    height: 74px;
+
+    background-repeat: no-repeat;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    z-index: 2;
+}
 #header_text
 {
     width: 885px;
@@ -217,57 +258,79 @@
 #javvii-container
 {
 display: block;
-
+    float: left;
+    overflow: hidden;
 }
 .gravatar{
 
     display: block;
-    //float: left;
+    float: right;
     //width: 150px;
     height: auto;
     display: inline-block;
+    margin-left: 72px;
 
     //padding: 10px;
 }
 .javvii{
 
     display: block;
-    //float: left;
+    float: left;
     //width: 150px;
     height:auto;
     display: inline-block;
 
     //padding: 10px;
 }
-.gravatar-box{
-
-    font-size: 15px;
-    border:  solid gray 1px ;
+.domain-box{
+    font-size: 18px;
     -webkit-appearance: none;
-
-    height: 55px;
+    border:  2px solid $lightGrey ;
+    //height: 55px;
     //line-height: 55px;
-    font-weight: 500;
-    box-shadow: none;
-    //float: left;
-    background-color: #FFFFFF;
-    position: relative;
-    z-index: $zindex2;
 
-}
-.javvii-box{
-
-    font-size: 15px;
-    -webkit-appearance: none;
-    border:  solid gray 1px ;
-    height: 55px;
-    //line-height: 55px;
-    font-weight: 500;
+    font-weight: bold;
     box-shadow: none;
     //float: right;
     background-color: #FFFFFF;
     position: relative;
     z-index: $zindex2;
+    border-radius: 7px;
+    padding: 15px;
+
+    margin-top: 14px;
+    margin-bottom: 14px;
+}
+.javvii-box{
+
+    font-size: 18px;
+    -webkit-appearance: none;
+    border:  2px solid $lightGrey ;
+    //height: 55px;
+    //line-height: 55px;
+    width: 255px;
+    font-weight: bold;
+    box-shadow: none;
+    //float: right;
+    background-color: #FFFFFF;
+    position: relative;
+    z-index: $zindex2;
+    border-radius: 7px;
+    padding: 15px;
+    margin-top: 14px;
+    margin-bottom: 14px;
+}
+.welcomePageLabel{
+    font-size: 20px;
+    font-weight: bold;
+    color: $darkGrey;
+
+}
+.welcomePageInput{
+    font-size: 20px;
+    font-weight: bold;
+    color: $darkGrey;
+
 }
 .custom-button{
 
