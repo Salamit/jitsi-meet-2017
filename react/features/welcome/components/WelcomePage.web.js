@@ -262,9 +262,9 @@ class WelcomePage extends AbstractWelcomePage {
                     {
                         this._renderFeatureRow(1, 5)
                     }
-                    {
+                    /*{
                         this._renderFeatureRow(5, 9)
-                    }
+                    }*/
                 </div>
             </div>
         );
