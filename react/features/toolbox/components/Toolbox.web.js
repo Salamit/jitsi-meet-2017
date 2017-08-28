@@ -156,7 +156,7 @@ class Toolbox extends Component {
             <div className = 'toolbox-toolbars'>
                 <Notice />
                 <PrimaryToolbar />
-                <SecondaryToolbar />
+                {/*<SecondaryToolbar />*/}
             </div>
         );
     }

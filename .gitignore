@@ -69,3 +69,4 @@ fastlane/screenshots
 # CocoaPods
 Pods/
 Podfile.lock
+.idea/*
