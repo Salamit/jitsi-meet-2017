@@ -3,18 +3,11 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
-      lintOptions {
-          checkReleaseBuilds false
-          // Or, if you prefer, you can continue to check for errors in release builds,
-          // but continue the build even when errors are found:
-          abortOnError false
-      }
-
 
     defaultConfig {
-        applicationId 'com.remoteteachers.meet'
+        applicationId 'org.jitsi.meet'
         versionCode Integer.parseInt("${version}")
-        versionName "1.5.${version}"
+        versionName "1.4.${version}"
 
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
@@ -33,21 +26,10 @@ android {
             exclude '/lib/x86_64/**'
         }
     }
-    signingConfigs {
-        release {
-            if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
-                storeFile file(MYAPP_RELEASE_STORE_FILE)
-                storePassword MYAPP_RELEASE_STORE_PASSWORD
-                keyAlias MYAPP_RELEASE_KEY_ALIAS
-                keyPassword MYAPP_RELEASE_KEY_PASSWORD
-            }
-        }
-    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-	    signingConfig signingConfigs.release
         }
     }
 }
@@ -55,5 +37,5 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(':sdk')
+    compile project(':sdk')
 }
