@@ -12,17 +12,17 @@ import styles from './styles';
 /**
  * The URL at which the privacy policy is available to the user.
  */
-const PRIVACY_URL = 'https://remoteteachers.com/privacy';
+const PRIVACY_URL = 'https://uproom.net/privacy';
 
 /**
  * The URL at which the user may send feedback.
  */
-const SEND_FEEDBACK_URL = 'mailto:support@remoteteachers.com';
+const SEND_FEEDBACK_URL = 'mailto:support@uproom.net';
 
 /**
  * The URL at which the terms (of service/use) are available to the user.
  */
-const TERMS_URL = 'https://remoteteachers.com/terms';
+const TERMS_URL = 'https://uproom.net/terms';
 
 /**
  * The native container rendering the welcome page.
