@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.remoteteachers.meet;
+package net.uproom.meet;
 
 import android.os.Bundle;
 
