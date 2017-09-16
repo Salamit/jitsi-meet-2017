@@ -32,8 +32,8 @@ const _TNS = 'unsupportedBrowser';
  * @type {Array<string>}
  */
 const _URLS = {
-    android: 'https://play.google.com/store/apps/details?id=org.jitsi.meet',
-    ios: 'https://itunes.apple.com/us/app/jitsi-meet/id1165103905'
+    android: 'https://play.google.com/store/apps/details?id=net.uproom.meet',
+    ios: 'https://play.google.com/store/apps/details?id=net.uproom.meet'
 };
 
 /**

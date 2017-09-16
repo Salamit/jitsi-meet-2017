@@ -123,9 +123,11 @@
     background-image: url(../images/welcome_page/landingpage.jpg);
     height: 100%;
     width: 100%;
-    position: bottom;
+    position: absolute;
     background-repeat: no-repeat;
     background-color: #012338;
+    background-posision: center;
+    background-size: 100% 100%;
 }
 
 #welcome_page_main

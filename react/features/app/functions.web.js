@@ -38,6 +38,10 @@ const _INTERCEPT_COMPONENT_RULES = [
      */
     () => {
         const OS = Platform.OS;
+	
+	if(OS === 'ios'){
+		return NoMobileApp;	
+	}
 
         if (OS === 'android' || OS === 'ios') {
             const mobileAppPromo

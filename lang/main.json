@@ -103,7 +103,7 @@
         "lock": "Lock / Unlock room",
         "invite": "Share the link",
         "chat": "Open / Close chat",
-        "etherpad": "Open / Close shared document",
+        "etherpad": "Open / Close Whiteboard",
         "sharedvideo": "Share a YouTube video",
         "sharescreen": "Start / Stop screen sharing",
         "fullscreen": "View / Exit full screen",
