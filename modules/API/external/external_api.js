@@ -1,6 +1,6 @@
 import EventEmitter from 'events';
 
-import { urlObjectToString } from '../../../react/features/base/util';
+import { urlObjectToString } from '../../../react/features/base/util/uri';
 import {
     PostMessageTransportBackend,
     Transport
@@ -245,6 +245,7 @@ export default class JitsiMeetExternalAPI extends EventEmitter {
         const frameName = `jitsiConferenceFrame${id}`;
 
         this._frame = document.createElement('iframe');
+        this._frame.allow = 'camera; microphone';
         this._frame.src = this._url;
         this._frame.name = frameName;
         this._frame.id = frameName;

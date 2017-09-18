@@ -6,9 +6,10 @@ import { translate } from '../../base/i18n';
 import { MEDIA_TYPE } from '../../base/media';
 import { Link, Text } from '../../base/react';
 import { ColorPalette } from '../../base/styles';
-import { createLocalTracksA } from '../../base/tracks';
+import { createDesiredLocalTracks } from '../../base/tracks';
 
 import { AbstractWelcomePage, _mapStateToProps } from './AbstractWelcomePage';
+import LocalVideoTrackUnderlay from './LocalVideoTrackUnderlay';
 import styles from './styles';
 
 /**
@@ -46,10 +47,7 @@ class WelcomePage extends AbstractWelcomePage {
      * @returns {void}
      */
     componentWillMount() {
-        const { dispatch, _localVideoTrack } = this.props;
-
-        (typeof _localVideoTrack === 'undefined')
-            && dispatch(createLocalTracksA({ devices: [ MEDIA_TYPE.VIDEO ] }));
+        this.props.dispatch(createDesiredLocalTracks(MEDIA_TYPE.VIDEO));
     }
 
     /**
@@ -58,15 +56,40 @@ class WelcomePage extends AbstractWelcomePage {
      * @returns {ReactElement}
      */
     render() {
+        const { t } = this.props;
+
         return (
-            <View style = { styles.container }>
+            <LocalVideoTrackUnderlay style = { styles.welcomePage }>
+                <View style = { styles.roomContainer }>
+                    <Text style = { styles.title }>
+                        { t('welcomepage.roomname') }
+                    </Text>
+                    <TextInput
+                        accessibilityLabel = { 'Input room name.' }
+                        autoCapitalize = 'none'
+                        autoComplete = { false }
+                        autoCorrect = { false }
+                        autoFocus = { false }
+                        onChangeText = { this._onRoomChange }
+                        placeholder = { t('welcomepage.roomnamePlaceHolder') }
+                        style = { styles.textInput }
+                        underlineColorAndroid = 'transparent'
+                        value = { this.state.room } />
+                    <TouchableHighlight
+                        accessibilityLabel = { 'Tap to Join.' }
+                        disabled = { this._isJoinDisabled() }
+                        onPress = { this._onJoin }
+                        style = { styles.button }
+                        underlayColor = { ColorPalette.white }>
+                        <Text style = { styles.buttonText }>
+                            { t('welcomepage.join') }
+                        </Text>
+                    </TouchableHighlight>
+                </View>
                 {
-                    this._renderLocalVideo()
+                    this._renderLegalese()
                 }
-                {
-                    this._renderLocalVideoOverlay()
-                }
-            </View>
+            </LocalVideoTrackUnderlay>
         );
     }
 
@@ -97,53 +120,6 @@ class WelcomePage extends AbstractWelcomePage {
                     url = { SEND_FEEDBACK_URL }>
                     { t('welcomepage.sendFeedback') }
                 </Link>
-            </View>
-        );
-    }
-
-    /**
-     * Renders a View over the local video. The latter is thought of as the
-     * background (content) of this WelcomePage. The former is thought of as the
-     * foreground (content) of this WelcomePage such as the room name input, the
-     * button to initiate joining the specified room, etc.
-     *
-     * @private
-     * @returns {ReactElement}
-     */
-    _renderLocalVideoOverlay() {
-        const { t } = this.props;
-
-        return (
-            <View style = { styles.localVideoOverlay }>
-                <View style = { styles.roomContainer }>
-                    <Text style = { styles.title }>
-                        { t('welcomepage.roomname') }
-                    </Text>
-                    <TextInput
-                        accessibilityLabel = { 'Input room name.' }
-                        autoCapitalize = 'none'
-                        autoComplete = { false }
-                        autoCorrect = { false }
-                        autoFocus = { false }
-                        onChangeText = { this._onRoomChange }
-                        placeholder = { t('welcomepage.roomnamePlaceHolder') }
-                        style = { styles.textInput }
-                        underlineColorAndroid = 'transparent'
-                        value = { this.state.room } />
-                    <TouchableHighlight
-                        accessibilityLabel = { 'Tap to Join.' }
-                        disabled = { this._isJoinDisabled() }
-                        onPress = { this._onJoin }
-                        style = { styles.button }
-                        underlayColor = { ColorPalette.white }>
-                        <Text style = { styles.buttonText }>
-                            { t('welcomepage.join') }
-                        </Text>
-                    </TouchableHighlight>
-                </View>
-                {
-                    this._renderLegalese()
-                }
             </View>
         );
     }

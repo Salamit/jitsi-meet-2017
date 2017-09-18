@@ -2,7 +2,6 @@
 const logger = require("jitsi-meet-logger").getLogger(__filename);
 
 import {openConnection} from './connection';
-import ContactList from './modules/UI/side_pannels/contactlist/ContactList';
 
 import AuthHandler from './modules/UI/authentication/AuthHandler';
 import Recorder from './modules/recorder/Recorder';
@@ -17,7 +16,7 @@ import UIEvents from './service/UI/UIEvents';
 import UIUtil from './modules/UI/util/UIUtil';
 import * as JitsiMeetConferenceEvents from './ConferenceEvents';
 
-import analytics from './modules/analytics/analytics';
+import { initAnalytics } from './react/features/analytics';
 
 import EventEmitter from "events";
 
@@ -35,6 +34,7 @@ import {
 } from './react/features/base/conference';
 import { updateDeviceList } from './react/features/base/devices';
 import {
+    isAnalyticsEnabled,
     isFatalJitsiConnectionError
 } from './react/features/base/lib-jitsi-meet';
 import {
@@ -67,15 +67,11 @@ import { getLocationContextRoot } from './react/features/base/util';
 import { statsEmitter } from './react/features/connection-indicator';
 import { showDesktopPicker } from  './react/features/desktop-picker';
 import { maybeOpenFeedbackDialog } from './react/features/feedback';
-import { setFilmstripRemoteVideosVisibility } from './react/features/filmstrip';
 import {
     mediaPermissionPromptVisibilityChanged,
     suspendDetected
 } from './react/features/overlay';
-import {
-    isButtonEnabled,
-    showDesktopSharingButton
-} from './react/features/toolbox';
+import { showDesktopSharingButton } from './react/features/toolbox';
 
 const { participantConnectionStatus } = JitsiMeetJS.constants;
 
@@ -663,12 +659,13 @@ export default {
                     oldOnUnhandledRejection(event);
             };
         }
-
         return JitsiMeetJS.init(
-            Object.assign(
-                {enableAnalyticsLogging: analytics.isEnabled()}, config)
+            Object.assign({
+                    enableAnalyticsLogging: isAnalyticsEnabled(APP.store)
+                },
+                config)
             ).then(() => {
-                analytics.init();
+                initAnalytics(APP.store);
                 return this.createInitialLocalTracksAndConnect(
                     options.roomName, {
                         startAudioOnly: config.startAudioOnly,
@@ -708,11 +705,6 @@ export default {
 
                 this._createRoom(tracks);
                 APP.remoteControl.init();
-
-                if (isButtonEnabled('contacts')
-                    && !interfaceConfig.filmStripOnly) {
-                    APP.UI.ContactList = new ContactList(room);
-                }
 
                 // if user didn't give access to mic or camera or doesn't have
                 // them at all, we mark corresponding toolbar buttons as muted,
@@ -1626,17 +1618,14 @@ export default {
 
             // check the roles for the new user and reflect them
             APP.UI.updateUserRole(user);
-
-            updateRemoteThumbnailsVisibility();
         });
+
         room.on(ConferenceEvents.USER_LEFT, (id, user) => {
             APP.store.dispatch(participantLeft(id, user));
             logger.log('USER %s LEFT', id, user);
             APP.API.notifyUserLeft(id);
             APP.UI.removeUser(id, user.getDisplayName());
             APP.UI.onSharedVideoStop(id);
-
-            updateRemoteThumbnailsVisibility();
         });
 
         room.on(ConferenceEvents.USER_STATUS_CHANGED, (id, status) => {
@@ -1780,10 +1769,6 @@ export default {
             APP.UI.addListener(
                 UIEvents.VIDEO_UNMUTING_WHILE_AUDIO_ONLY,
                 () => this._displayAudioOnlyTooltip('videoMute'));
-
-            APP.UI.addListener(
-                UIEvents.PINNED_ENDPOINT,
-                updateRemoteThumbnailsVisibility);
         }
 
         room.on(ConferenceEvents.CONNECTION_INTERRUPTED, () => {
@@ -2147,8 +2132,6 @@ export default {
                     }
                 });
             }
-
-            updateRemoteThumbnailsVisibility();
         });
         room.addCommandListener(
             this.commands.defaults.SHARED_VIDEO, ({value, attributes}, id) => {
@@ -2164,24 +2147,6 @@ export default {
                     APP.UI.onSharedVideoUpdate(id, value, attributes);
                 }
             });
-
-        function updateRemoteThumbnailsVisibility() {
-            const localUserId = APP.conference.getMyUserId();
-            const remoteParticipantsCount = room.getParticipantCount() - 1;
-
-            // Get the remote thumbnail count for cases where there are
-            // non-participants displaying video, such as with video sharing.
-            const remoteVideosCount = APP.UI.getRemoteVideosCount();
-
-            const shouldShowRemoteThumbnails = interfaceConfig.filmStripOnly
-                || (APP.UI.isPinned(localUserId) && remoteVideosCount)
-                || remoteVideosCount > 1
-                || remoteParticipantsCount !== remoteVideosCount;
-
-            APP.store.dispatch(
-                setFilmstripRemoteVideosVisibility(
-                    Boolean(shouldShowRemoteThumbnails)));
-        }
     },
     /**
     * Adds any room listener.

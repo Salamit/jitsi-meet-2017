@@ -1,9 +1,9 @@
+import Tooltip from '@atlaskit/tooltip';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { translate } from '../../base/i18n';
-import { Popover } from '../../base/popover';
-import { VideoQualityDialog } from './';
+import { shouldRemoteVideosBeVisible } from '../../filmstrip';
 
 import {
     VIDEO_QUALITY_LEVELS
@@ -126,7 +126,8 @@ export class VideoQualityLabel extends Component {
             _conferenceStarted,
             _filmstripVisible,
             _remoteVideosVisible,
-            _resolution
+            _resolution,
+            t
         } = this.props;
 
         // FIXME The _conferenceStarted check is used to be defensive against
@@ -149,18 +150,19 @@ export class VideoQualityLabel extends Component {
             = `${baseClasses} ${filmstrip} ${remoteVideosVisible} ${opening}`;
 
         return (
-            <Popover
+            <div
                 className = { classNames }
-                content = { <VideoQualityDialog /> }
-                id = 'videoResolutionLabel'
-                position = { 'left top' }>
-                <div
-                    className = 'video-quality-label-status'>
-                    { _audioOnly
-                        ? <i className = 'icon-visibility-off' />
-                        : this._mapResolutionToTranslation(_resolution) }
-                </div>
-            </Popover>
+                id = 'videoResolutionLabel'>
+                <Tooltip
+                    description = { t('videoStatus.labelTooltip') }
+                    position = { 'left' }>
+                    <div className = 'video-quality-label-status'>
+                        { _audioOnly
+                            ? <i className = 'icon-visibility-off' />
+                            : this._mapResolutionToTranslation(_resolution) }
+                    </div>
+                </Tooltip>
+            </div>
         );
     }
 
@@ -209,24 +211,15 @@ export class VideoQualityLabel extends Component {
  * }}
  */
 function _mapStateToProps(state) {
-    const {
-        audioOnly,
-        conference
-    } = state['features/base/conference'];
-    const { disable1On1Mode } = state['features/base/config'];
-    const {
-        remoteVideosVisible,
-        visible
-    } = state['features/filmstrip'];
-    const {
-        resolution
-    } = state['features/large-video'];
+    const { audioOnly, conference } = state['features/base/conference'];
+    const { visible } = state['features/filmstrip'];
+    const { resolution } = state['features/large-video'];
 
     return {
         _audioOnly: audioOnly,
         _conferenceStarted: Boolean(conference),
         _filmstripVisible: visible,
-        _remoteVideosVisible: Boolean(remoteVideosVisible || disable1On1Mode),
+        _remoteVideosVisible: shouldRemoteVideosBeVisible(state),
         _resolution: resolution
     };
 }

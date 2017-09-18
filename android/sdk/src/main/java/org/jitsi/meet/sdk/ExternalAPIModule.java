@@ -20,11 +20,18 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.bridge.ReadableMapKeySetIterator;
 
 import org.jitsi.meet.sdk.JitsiMeetView;
 import org.jitsi.meet.sdk.JitsiMeetViewListener;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.regex.Pattern;
 
 /**
  * Module implementing a simple API to enable a proximity sensor-controlled
@@ -34,9 +41,59 @@ import java.util.HashMap;
  */
 class ExternalAPIModule extends ReactContextBaseJavaModule {
     /**
-     * React Native module name.
+     * The {@code Method}s of {@code JitsiMeetViewListener} by event name i.e.
+     * redux action types.
+     */
+    private static final Map<String, Method> JITSI_MEET_VIEW_LISTENER_METHODS
+        = new HashMap<>();
+
+    /**
+     * The name of this module to be used in the React Native bridge.
      */
     private static final String MODULE_NAME = "ExternalAPI";
+
+    static {
+        // Figure out the mapping between the JitsiMeetViewListener methods
+        // and the events i.e. redux action types.
+        Pattern onPattern = Pattern.compile("^on[A-Z]+");
+        Pattern camelcasePattern = Pattern.compile("([a-z0-9]+)([A-Z0-9]+)");
+
+        for (Method method : JitsiMeetViewListener.class.getDeclaredMethods()) {
+            // * The method must be public (because it is declared by an
+            //   interface).
+            // * The method must be/return void.
+            if (!Modifier.isPublic(method.getModifiers())
+                    || !Void.TYPE.equals(method.getReturnType())) {
+                continue;
+            }
+
+            // * The method name must start with "on" followed by a
+            //   capital/uppercase letter (in agreement with the camelcase
+            //   coding style customary to Java in general and the projects of
+            //   the Jitsi community in particular).
+            String name = method.getName();
+
+            if (!onPattern.matcher(name).find()) {
+                continue;
+            }
+
+            // * The method must accept/have exactly 1 parameter of a type
+            //   assignable from HashMap.
+            Class<?>[] parameterTypes = method.getParameterTypes();
+
+            if (parameterTypes.length != 1
+                    || !parameterTypes[0].isAssignableFrom(HashMap.class)) {
+                continue;
+            }
+
+            // Convert the method name to an event name.
+            name
+                = camelcasePattern.matcher(name.substring(2))
+                    .replaceAll("$1_$2")
+                    .toUpperCase(Locale.ROOT);
+            JITSI_MEET_VIEW_LISTENER_METHODS.put(name, method);
+        }
+    }
 
     /**
      * Initializes a new module instance. There shall be a single instance of
@@ -84,36 +141,37 @@ class ExternalAPIModule extends ReactContextBaseJavaModule {
             return;
         }
 
-        // TODO Converting a ReadableMap to a HashMap is not supported until
-        // React Native 0.46.
-        HashMap<String, Object> dataMap = new HashMap<>();
+        Method method = JITSI_MEET_VIEW_LISTENER_METHODS.get(name);
 
-        switch (name) {
-        case "CONFERENCE_FAILED":
-            dataMap.put("error", data.getString("error"));
-            dataMap.put("url", data.getString("url"));
-            listener.onConferenceFailed(dataMap);
-            break;
-
-        case "CONFERENCE_JOINED":
-            dataMap.put("url", data.getString("url"));
-            listener.onConferenceJoined(dataMap);
-            break;
-
-        case "CONFERENCE_LEFT":
-            dataMap.put("url", data.getString("url"));
-            listener.onConferenceLeft(dataMap);
-            break;
-
-        case "CONFERENCE_WILL_JOIN":
-            dataMap.put("url", data.getString("url"));
-            listener.onConferenceWillJoin(dataMap);
-            break;
-
-        case "CONFERENCE_WILL_LEAVE":
-            dataMap.put("url", data.getString("url"));
-            listener.onConferenceWillLeave(dataMap);
-            break;
+        if (method != null) {
+            try {
+                method.invoke(listener, toHashMap(data));
+            } catch (IllegalAccessException | InvocationTargetException e) {
+                throw new RuntimeException(e);
+            }
         }
+    }
+
+    /**
+     * Initializes a new {@code HashMap} instance with the key-value
+     * associations of a specific {@code ReadableMap}.
+     *
+     * @param readableMap the {@code ReadableMap} specifying the key-value
+     * associations with which the new {@code HashMap} instance is to be
+     * initialized.
+     * @return a new {@code HashMap} instance initialized with the key-value
+     * associations of the specified {@code readableMap}.
+     */
+    private HashMap<String, Object> toHashMap(ReadableMap readableMap) {
+        HashMap<String, Object> hashMap = new HashMap<>();
+
+        for (ReadableMapKeySetIterator i = readableMap.keySetIterator();
+                i.hasNextKey();) {
+            String key = i.nextKey();
+
+            hashMap.put(key, readableMap.getString(key));
+        }
+
+        return hashMap;
     }
 }
