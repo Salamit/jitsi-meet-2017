@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId 'com.remoteteachers.meet'
-        versionCode 2
+        versionCode 3
         versionName "1.6.${version}"
 
 
