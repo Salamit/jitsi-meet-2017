@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.jitsi.meet;
+package com.remoteteachers.meet;
 
 import android.os.Bundle;
 import android.util.Log;
