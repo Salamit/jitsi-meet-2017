@@ -3,11 +3,13 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
+    
+
 
     defaultConfig {
         applicationId 'cnow9.oritor.com'
         versionCode Integer.parseInt("${version}")
-        versionName "1.4.${version}"
+        versionName "1.5.${version}"
 
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
