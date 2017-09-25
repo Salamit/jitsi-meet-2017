@@ -14,11 +14,10 @@
  * limitations under the License.
  */
 
-package cnow9.oritar.com;
+package org.jitsi.meet;
 
 import android.os.Bundle;
 import android.util.Log;
-
 import org.jitsi.meet.sdk.JitsiMeetActivity;
 import org.jitsi.meet.sdk.JitsiMeetView;
 import org.jitsi.meet.sdk.JitsiMeetViewListener;
