@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.jitsi.meet;
+package net.nxtbase.meet;
 
 import android.os.Bundle;
 import android.util.Log;

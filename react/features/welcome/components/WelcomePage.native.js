@@ -15,17 +15,17 @@ import styles from './styles';
 /**
  * The URL at which the privacy policy is available to the user.
  */
-const PRIVACY_URL = 'https://jitsi.org/meet/privacy';
+const PRIVACY_URL = 'https://nxtbase.net/meet/privacy';
 
 /**
  * The URL at which the user may send feedback.
  */
-const SEND_FEEDBACK_URL = 'mailto:support@jitsi.org';
+const SEND_FEEDBACK_URL = 'mailto:support@nxtbase.net';
 
 /**
  * The URL at which the terms (of service/use) are available to the user.
  */
-const TERMS_URL = 'https://jitsi.org/meet/terms';
+const TERMS_URL = 'https://nxtbase.net/meet/terms';
 
 /**
  * The native container rendering the welcome page.
