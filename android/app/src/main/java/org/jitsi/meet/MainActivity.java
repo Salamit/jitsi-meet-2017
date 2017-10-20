@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.nxtbase.meet;
+package eu.sabil.meet;
 
 import android.os.Bundle;
 import android.util.Log;
