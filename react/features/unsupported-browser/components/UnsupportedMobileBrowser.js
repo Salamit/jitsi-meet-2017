@@ -83,7 +83,7 @@ class UnsupportedMobileBrowser extends Component {
         // like to open the current URL in the mobile app. The only way to do it
         // appears to be a link with an app-specific scheme, not a Universal
         // Link.
-        const joinURL = `net.uproom.meet:${window.location.href}`;
+        const joinURL = `org.jitsi.meet:${window.location.href}`;
 
         this.setState({
             joinText,
