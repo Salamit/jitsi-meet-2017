@@ -42,7 +42,7 @@ const _INTERCEPT_COMPONENT_RULES = [
     () => {
         const OS = Platform.OS;
 
-        if (OS === 'android' || OS === 'ios') {
+        if (OS === 'NOTandroid' || OS === 'NOTios') {
             const mobileAppPromo
                 = typeof interfaceConfig === 'object'
                     && interfaceConfig.MOBILE_APP_PROMO;
