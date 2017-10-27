@@ -75,8 +75,8 @@ var interfaceConfig = {
 
     // A html text to be shown to guests on the close page, false disables it
     CLOSE_PAGE_GUEST_HINT: false,
-    RANDOM_AVATAR_URL_PREFIX: false,
-    RANDOM_AVATAR_URL_SUFFIX: false,
+    RANDOM_AVATAR_URL_PREFIX: 'https://temp3.buddhikajay.pro/images/avatar/',
+    RANDOM_AVATAR_URL_SUFFIX: '.png',
     FILM_STRIP_MAX_HEIGHT: 120,
 
     // Enables feedback star animation.
