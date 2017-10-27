@@ -191,7 +191,7 @@ class Conference extends Component {
                   * from the fact that these two React Components depict the
                   * videos of the conference's participants.
                   */}
-                <Filmstrip />
+                {/*<Filmstrip />*/}
 
                 {/*
                   * The overlays need to be bellow the Toolbox so that the user

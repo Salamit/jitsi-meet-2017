@@ -100,7 +100,7 @@ class Conference extends Component {
                 onMouseMove = { this._onShowToolbar }>
                 <div id = 'videospace'>
                     <LargeVideo />
-                    <Filmstrip filmstripOnly = { filmStripOnly } />
+                    {/*<Filmstrip filmstripOnly = { filmStripOnly } />*/}
                 </div>
 
                 { filmStripOnly ? null : <Toolbox /> }
