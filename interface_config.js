@@ -15,11 +15,11 @@ var interfaceConfig = {
     TOOLBAR_TIMEOUT: 4000,
     DEFAULT_REMOTE_DISPLAY_NAME: 'Fellow User',
     DEFAULT_LOCAL_DISPLAY_NAME: 'me',
-    SHOW_JITSI_WATERMARK: true,
+    SHOW_JITSI_WATERMARK: false,
     JITSI_WATERMARK_LINK: 'https://jitsi.org',
 
     // if watermark is disabled by default, it can be shown only for guests
-    SHOW_WATERMARK_FOR_GUESTS: true,
+    SHOW_WATERMARK_FOR_GUESTS: false,
     SHOW_BRAND_WATERMARK: false,
     BRAND_WATERMARK_LINK: '',
     SHOW_POWERED_BY: false,
@@ -41,6 +41,7 @@ var interfaceConfig = {
 
         // main toolbar
 //        'microphone', 'camera', 'desktop', 'invite', 'fullscreen', 'fodeviceselection', 'hangup',
+	'microphone', 'hangup',
 
         // extended toolbar
         //'profile', 'contacts', 'info', 'chat', 'recording', 'etherpad', 'sharedvideo', 'settings', 'raisehand', 'videoquality', 'filmstrip' ],
