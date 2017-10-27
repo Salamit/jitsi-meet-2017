@@ -13,7 +13,7 @@ var interfaceConfig = {
     DESKTOP_SHARING_BUTTON_DISABLED_TOOLTIP: null,
     INITIAL_TOOLBAR_TIMEOUT: 20000,
     TOOLBAR_TIMEOUT: 4000,
-    DEFAULT_REMOTE_DISPLAY_NAME: 'Fellow Jitster',
+    DEFAULT_REMOTE_DISPLAY_NAME: 'Fellow User',
     DEFAULT_LOCAL_DISPLAY_NAME: 'me',
     SHOW_JITSI_WATERMARK: true,
     JITSI_WATERMARK_LINK: 'https://jitsi.org',
@@ -24,7 +24,7 @@ var interfaceConfig = {
     BRAND_WATERMARK_LINK: '',
     SHOW_POWERED_BY: false,
     GENERATE_ROOMNAMES_ON_WELCOME_PAGE: true,
-    APP_NAME: 'Jitsi Meet',
+    APP_NAME: 'Meetrix',
     LANG_DETECTION: false, // Allow i18n to detect the system language
     INVITATION_POWERED_BY: true,
 
@@ -40,16 +40,18 @@ var interfaceConfig = {
     TOOLBAR_BUTTONS: [
 
         // main toolbar
-        'microphone', 'camera', 'desktop', 'invite', 'fullscreen', 'fodeviceselection', 'hangup',
+//        'microphone', 'camera', 'desktop', 'invite', 'fullscreen', 'fodeviceselection', 'hangup',
 
         // extended toolbar
-        'profile', 'contacts', 'info', 'chat', 'recording', 'etherpad', 'sharedvideo', 'settings', 'raisehand', 'videoquality', 'filmstrip' ],
+        //'profile', 'contacts', 'info', 'chat', 'recording', 'etherpad', 'sharedvideo', 'settings', 'raisehand', 'videoquality', 'filmstrip' ],
+	'profile', 'chat'],
 
     /**
      * Main Toolbar Buttons
      * All of them should be in TOOLBAR_BUTTONS
      */
-    MAIN_TOOLBAR_BUTTONS: [ 'microphone', 'camera', 'desktop', 'invite', 'fullscreen', 'fodeviceselection', 'hangup' ],
+//    MAIN_TOOLBAR_BUTTONS: [ 'microphone', 'camera', 'desktop', 'invite', 'fullscreen', 'fodeviceselection', 'hangup' ],
+    MAIN_TOOLBAR_BUTTONS: [ 'microphone', 'hangup' ],
     SETTINGS_SECTIONS: [ 'language', 'devices', 'moderator' ],
     INVITE_OPTIONS: [ 'invite', 'dialout', 'addtocall' ],
 
@@ -94,10 +96,10 @@ var interfaceConfig = {
     LOCAL_THUMBNAIL_RATIO: 16 / 9, // 16:9
     REMOTE_THUMBNAIL_RATIO: 1, // 1:1
     // Documentation reference for the live streaming feature.
-    LIVE_STREAMING_HELP_LINK: 'https://jitsi.org/live',
+    LIVE_STREAMING_HELP_LINK: 'https://meetrix.xyz/live',
 
     /**
-     * Whether the mobile app Jitsi Meet is to be promoted to participants
+     * Whether the mobile app Meetrix is to be promoted to participants
      * attempting to join a conference in a mobile Web browser. If
      * {@code undefined}, defaults to {@code true}.
      *
