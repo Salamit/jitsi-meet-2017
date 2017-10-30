@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package org.jitsi.meet;
+package xyz.meetrix.meet;
 
 import android.os.Bundle;
 import android.util.Log;
 
-import org.jitsi.meet.sdk.JitsiMeetActivity;
-import org.jitsi.meet.sdk.JitsiMeetView;
-import org.jitsi.meet.sdk.JitsiMeetViewListener;
+import xyz.meetrix.meet.sdk.JitsiMeetActivity;
+import xyz.meetrix.meet.sdk.JitsiMeetView;
+import xyz.meetrix.meet.sdk.JitsiMeetViewListener;
 
 import java.util.Map;
 
