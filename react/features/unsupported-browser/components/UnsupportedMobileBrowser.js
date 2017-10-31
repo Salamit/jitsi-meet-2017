@@ -32,7 +32,7 @@ const _TNS = 'unsupportedBrowser';
  * @type {Array<string>}
  */
 const _URLS = {
-    android: 'https://play.google.com/store/apps/details?id=org.jitsi.meet',
+    android: 'https://play.google.com/store/apps/details?id=net.uproom.meet',
     ios: 'https://itunes.apple.com/us/app/jitsi-meet/id1165103905'
 };
 
@@ -83,7 +83,7 @@ class UnsupportedMobileBrowser extends Component {
         // like to open the current URL in the mobile app. The only way to do it
         // appears to be a link with an app-specific scheme, not a Universal
         // Link.
-        const joinURL = `org.jitsi.meet:${window.location.href}`;
+        const joinURL = `meet.uproom.net:${window.location.href}`;
 
         this.setState({
             joinText,
