@@ -6,13 +6,11 @@
 #####jitsilogo144.png : 144x144
 #####jitsilogo192.png : 192x192 mm
 
-
 #parameters
 export APP_ID="xyz.meetrix.meet"
 export DEFAULT_URL="meet.meetrix.xyz"
 export REACT_URL="meetrix.xyz"
 export APP_NAME="Meetrix_meet"
-export MYAPP_RELEASE_STORE_FILE="buddhika2.keystore"
 export JITSI_ROOT="/media/supuni/Academic/siplo/jitsi-meet/CNOW9/jitsi-meet"
 export SIGNING_DIRECTORY="/media/supuni/Academic/siplo/jitsi-meet/keystore"
 export ANDROID_IMAGES_DIRECTORY="/media/supuni/Academic/siplo/jitsi-meet/android_logo"
