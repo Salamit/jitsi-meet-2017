@@ -33,7 +33,7 @@ const _TNS = 'unsupportedBrowser';
  */
 const _URLS = {
     android: 'https://play.google.com/store/apps/details?id=com.remoteteachers.meet',
-    ios: 'https://itunes.apple.com/us/app/jitsi-meet/id1165103905'
+    ios: 'https://itunes.apple.com/us/app/jitsi-meet/id=com.remoteteachers.meet'
 };
 
 /**
