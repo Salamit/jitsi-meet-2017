@@ -32,7 +32,7 @@ const _TNS = 'unsupportedBrowser';
  * @type {Array<string>}
  */
 const _URLS = {
-    android: 'https://play.google.com/store/apps/details?id=org.jitsi.meet',
+    android: 'https://play.google.com/store/apps/details?id=com.remoteteachers.meet',
     ios: 'https://itunes.apple.com/us/app/jitsi-meet/id1165103905'
 };
 
