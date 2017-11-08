@@ -31,4 +31,10 @@ cp $IOS_IMAGES_DIRECTORY/AppIcon-76@2x.png $JITSI_ROOT/ios/app/src/Images.xcasse
 
 cp $IOS_IMAGES_DIRECTORY/AppIcon-83.5@2x.png $JITSI_ROOT/ios/app/src/Images.xcassets/AppIcon.appiconset/AppIcon-83.5@2x.png
 
+#launch Screen
 
+cp $IOS_IMAGES_DIRECTORY/LaunchScreen-480@1x.png $JITSI_ROOT/ios/app/src/Images.xcassets/LaunchScreen.imageset/LaunchScreen-480@1x.png
+
+cp $IOS_IMAGES_DIRECTORY/LaunchScreen-480@2x.png $JITSI_ROOT/ios/app/src/Images.xcassets/LaunchScreen.imageset/LaunchScreen-480@2x.png
+
+cp $IOS_IMAGES_DIRECTORY/LaunchScreen-480@3x.png $JITSI_ROOT/ios/app/src/Images.xcassets/LaunchScreen.imageset/LaunchScreen-480@3x.png
