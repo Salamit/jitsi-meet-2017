@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId 'xyz.meetrix.meet'
-        versionCode Integer.parseInt("${version}")
+        versionCode 2
         versionName "1.9.${version}"
 
         minSdkVersion rootProject.ext.minSdkVersion
