@@ -13,14 +13,14 @@ var interfaceConfig = { // eslint-disable-line no-unused-vars
     DEFAULT_REMOTE_DISPLAY_NAME: "Fellow Jitster",
     DEFAULT_LOCAL_DISPLAY_NAME: "me",
     SHOW_JITSI_WATERMARK: true,
-    JITSI_WATERMARK_LINK: "https://jitsi.org",
+    JITSI_WATERMARK_LINK: "https://nxtbase.de",
     // if watermark is disabled by default, it can be shown only for guests
     SHOW_WATERMARK_FOR_GUESTS: true,
     SHOW_BRAND_WATERMARK: false,
     BRAND_WATERMARK_LINK: "",
     SHOW_POWERED_BY: false,
     GENERATE_ROOMNAMES_ON_WELCOME_PAGE: true,
-    APP_NAME: "Jitsi Meet",
+    APP_NAME: "Remote Support",
     LANG_DETECTION: false,    // Allow i18n to detect the system language
     INVITATION_POWERED_BY: true,
     /**
@@ -81,7 +81,7 @@ var interfaceConfig = { // eslint-disable-line no-unused-vars
     LOCAL_THUMBNAIL_RATIO: 16/9, //16:9
     REMOTE_THUMBNAIL_RATIO: 1, //1:1
     // Documentation reference for the live streaming feature.
-    LIVE_STREAMING_HELP_LINK: "https://jitsi.org/live",
+    LIVE_STREAMING_HELP_LINK: "https://nxtbase.de/live",
 
     /**
      * Whether the mobile app Jitsi Meet is to be promoted to participants
