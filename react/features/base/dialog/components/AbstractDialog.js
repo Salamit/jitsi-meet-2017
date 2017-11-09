@@ -1,15 +1,17 @@
-import React, { Component } from 'react';
+// @flow
+
+import PropTypes from 'prop-types';
+import { Component } from 'react';
 
 import { hideDialog } from '../actions';
 import { DIALOG_PROP_TYPES } from '../constants';
 
 /**
- * Abstract dialog to display dialogs.
+ * An abstract implementation of a dialog on Web/React and mobile/react-native.
  */
 export default class AbstractDialog extends Component {
-
     /**
-     * Abstract Dialog component's property types.
+     * {@code AbstractDialog} React {@code Component}'s prop types.
      *
      * @static
      */
@@ -17,57 +19,155 @@ export default class AbstractDialog extends Component {
         ...DIALOG_PROP_TYPES,
 
         /**
+         * The React {@code Component} children of {@code AbstractDialog}
+         * which represents the dialog's body.
+         */
+        children: PropTypes.node,
+
+        /**
          * Used to show/hide the dialog on cancel.
          */
-        dispatch: React.PropTypes.func
+        dispatch: PropTypes.func
+    };
+
+    _mounted: boolean;
+
+    state = {
     };
 
     /**
-     * Initializes a new Dialog instance.
+     * Initializes a new {@code AbstractDialog} instance.
      *
-     * @param {Object} props - The read-only properties with which the new
-     * instance is to be initialized.
+     * @param {Object} props - The read-only React {@code Component} props with
+     * which the new instance is to be initialized.
      */
-    constructor(props) {
+    constructor(props: Object) {
         super(props);
 
+        // Bind event handlers so they are only bound once per instance.
         this._onCancel = this._onCancel.bind(this);
         this._onSubmit = this._onSubmit.bind(this);
+        this._onSubmitFulfilled = this._onSubmitFulfilled.bind(this);
+        this._onSubmitRejected = this._onSubmitRejected.bind(this);
     }
 
     /**
-     * Dispatches action to hide the dialog.
+     * Implements React's {@link Component#componentWillMount()}. Invoked
+     * immediately before mounting occurs.
      *
+     * @inheritdoc
+     */
+    componentWillMount() {
+        this._mounted = true;
+    }
+
+    /**
+     * Implements React's {@link Component#componentWillUnmount()}. Invoked
+     * immediately before this component is unmounted and destroyed.
+     *
+     * @inheritdoc
+     */
+    componentWillUnmount() {
+        this._mounted = false;
+    }
+
+    /**
+     * Dispatches a redux action to hide this dialog.
+     *
+     * @returns {*} The return value of {@link hideDialog}.
+     */
+    _hide() {
+        return this.props.dispatch(hideDialog());
+    }
+
+    _onCancel: () => void;
+
+    /**
+     * Dispatches a redux action to hide this dialog when it's canceled.
+     *
+     * @protected
      * @returns {void}
      */
     _onCancel() {
-        let hide = true;
+        const { cancelDisabled, onCancel } = this.props;
 
-        if (this.props.onCancel) {
-            hide = this.props.onCancel();
-        }
-
-        if (hide) {
-            this.props.dispatch(hideDialog());
+        if ((typeof cancelDisabled === 'undefined' || !cancelDisabled)
+                && (!onCancel || onCancel())) {
+            this._hide();
         }
     }
 
+    _onSubmit: (?string) => void;
+
     /**
-     * Dispatches the action when submitting the dialog.
+     * Submits this {@code Dialog}. If the React {@code Component} prop
+     * {@code onSubmit} is defined, the function that is the value of the prop
+     * is invoked. If the function returns a {@code thenable}, then the
+     * resolution of the {@code thenable} is awaited. If the submission
+     * completes successfully, a redux action will be dispatched to hide this
+     * dialog.
      *
-     * @private
-     * @param {string} value - The submitted value if any.
+     * @protected
+     * @param {string} [value] - The submitted value if any.
      * @returns {void}
      */
-    _onSubmit(value) {
-        let hide = true;
+    _onSubmit(value: ?string) {
+        const { okDisabled, onSubmit } = this.props;
 
-        if (this.props.onSubmit) {
-            hide = this.props.onSubmit(value);
-        }
+        if (typeof okDisabled === 'undefined' || !okDisabled) {
+            this.setState({ submitting: true });
 
-        if (hide) {
-            this.props.dispatch(hideDialog());
+            // Invoke the React Compnent prop onSubmit if any.
+            const r = !onSubmit || onSubmit(value);
+
+            // If the invocation returns a thenable, await its resolution;
+            // otherwise, treat the return value as a boolean indicating whether
+            // the submission has completed successfully.
+            let then;
+
+            if (r) {
+                switch (typeof r) {
+                case 'function':
+                case 'object':
+                    then = r.then;
+                    break;
+                }
+            }
+            if (typeof then === 'function' && then.length === 2) {
+                then.call(r, this._onSubmitFulfilled, this._onSubmitRejected);
+            } else if (r) {
+                this._onSubmitFulfilled();
+            } else {
+                this._onSubmitRejected();
+            }
         }
+    }
+
+    _onSubmitFulfilled: () => void;
+
+    /**
+     * Notifies this {@code AbstractDialog} that it has been submitted
+     * successfully. Dispatches a redux action to hide this dialog after it has
+     * been submitted.
+     *
+     * @private
+     * @returns {void}
+     */
+    _onSubmitFulfilled() {
+        this._mounted && this.setState({ submitting: false });
+
+        this._hide();
+    }
+
+    _onSubmitRejected: () => void;
+
+    /**
+     * Notifies this {@code AbstractDialog} that its submission has failed.
+     *
+     * @private
+     * @returns {void}
+     */
+    _onSubmitRejected() {
+        this._mounted && this.setState({ submitting: false });
     }
 }

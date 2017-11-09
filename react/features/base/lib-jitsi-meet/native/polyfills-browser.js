@@ -2,6 +2,8 @@ import Iterator from 'es6-iterator';
 import BackgroundTimer from 'react-native-background-timer';
 import 'url-polyfill'; // Polyfill for URL constructor
 
+import { Platform } from '../../react';
+
 import Storage from './Storage';
 
 /**
@@ -141,24 +143,10 @@ function _visitNode(node, callback) {
             document.cookie = '';
         }
 
-        // Document.querySelector
-        //
-        // Required by:
-        // - strophejs-plugins/caps/strophe.caps.jsonly.js
-        const documentPrototype = Object.getPrototypeOf(document);
-
-        if (documentPrototype) {
-            if (typeof documentPrototype.querySelector === 'undefined') {
-                documentPrototype.querySelector = function(selectors) {
-                    return _querySelector(this.elementNode, selectors);
-                };
-            }
-        }
-
         // Element.querySelector
         //
         // Required by:
-        // - strophejs-plugins/caps/strophe.caps.jsonly.js
+        // - lib-jitsi-meet/modules/xmpp
         const elementPrototype
             = Object.getPrototypeOf(document.documentElement);
 
@@ -210,6 +198,7 @@ function _visitNode(node, callback) {
         // FIXME There is a weird infinite loop related to console.log and
         // Document and/or Element at the time of this writing. Work around it
         // by patching Node and/or overriding console.log.
+        const documentPrototype = Object.getPrototypeOf(document);
         const nodePrototype
             = _getCommonPrototype(documentPrototype, elementPrototype);
 
@@ -233,6 +222,23 @@ function _visitNode(node, callback) {
 
                     if (typeof consoleLog === 'function') {
                         console[level] = function(...args) {
+                            // XXX If console's disableYellowBox is truthy, then
+                            // react-native will not automatically display the
+                            // yellow box for the warn level. However, it will
+                            // still display the red box for the error level.
+                            // But I disable the yellow box when I don't want to
+                            // have react-native automatically show me the
+                            // console's output just like in the Release build
+                            // configuration. Because I didn't find a way to
+                            // disable the red box, downgrade the error level to
+                            // warn. The red box will still be displayed but not
+                            // for the error level.
+                            if (console.disableYellowBox && level === 'error') {
+                                console.warn(...args);
+
+                                return;
+                            }
+
                             const { length } = args;
 
                             for (let i = 0; i < length; ++i) {
@@ -305,26 +311,25 @@ function _visitNode(node, callback) {
         // Required by:
         // - lib-jitsi-meet/modules/RTC/adapter.screenshare.js
         // - lib-jitsi-meet/modules/RTC/RTCBrowserType.js
-        (() => {
-            const reactNativePackageJSON = require('react-native/package.json');
-            let userAgent = reactNativePackageJSON.name || 'react-native';
+        let userAgent = navigator.userAgent || '';
 
-            const version = reactNativePackageJSON.version;
+        // react-native/version
+        const { name, version } = require('react-native/package.json');
+        let rn = name || 'react-native';
 
-            if (version) {
-                userAgent += `/${version}`;
-            }
+        version && (rn += `/${version}`);
+        if (userAgent.indexOf(rn) === -1) {
+            userAgent = userAgent ? `${rn} ${userAgent}` : rn;
+        }
 
-            if (typeof navigator.userAgent !== 'undefined') {
-                const s = navigator.userAgent.toString();
+        // (OS version)
+        const os = `(${Platform.OS} ${Platform.Version})`;
 
-                if (s.length > 0 && s.indexOf(userAgent) === -1) {
-                    userAgent = `${s} ${userAgent}`;
-                }
-            }
+        if (userAgent.indexOf(os) === -1) {
+            userAgent = userAgent ? `${userAgent} ${os}` : os;
+        }
 
-            navigator.userAgent = userAgent;
-        })();
+        navigator.userAgent = userAgent;
     }
 
     // sessionStorage

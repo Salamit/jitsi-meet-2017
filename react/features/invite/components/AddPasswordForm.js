@@ -1,5 +1,6 @@
 import Button from '@atlaskit/button';
-import { FieldText } from '@atlaskit/field-text';
+import { FieldTextStateless as TextField } from '@atlaskit/field-text';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
@@ -21,17 +22,17 @@ class AddPasswordForm extends Component {
          *
          * @type {JitsiConference}
          */
-        conference: React.PropTypes.object,
+        conference: PropTypes.object,
 
         /**
          * Invoked to set a password on the conference.
          */
-        dispatch: React.PropTypes.func,
+        dispatch: PropTypes.func,
 
         /**
          * Invoked to obtain translated strings.
          */
-        t: React.PropTypes.func
+        t: PropTypes.func
     };
 
     /**
@@ -105,7 +106,7 @@ class AddPasswordForm extends Component {
                 onSubmit = { this._onSubmit } >
                 <div className = 'form-control__container'>
                     <div className = 'form-control__input-container'>
-                        <FieldText
+                        <TextField
                             autoFocus = { true }
                             compact = { true }
                             id = 'newPasswordInput'
@@ -122,7 +123,6 @@ class AddPasswordForm extends Component {
                         id = 'addPasswordBtn'
                         isDisabled = { !this.state.password }
                         onClick = { this._onSubmit }
-                        shouldFitContainer = { true }
                         type = 'button'>
                         { t('dialog.add') }
                     </Button>

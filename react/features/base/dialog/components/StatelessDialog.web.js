@@ -1,6 +1,8 @@
 import AKButton from '@atlaskit/button';
 import AKButtonGroup from '@atlaskit/button-group';
 import ModalDialog from '@atlaskit/modal-dialog';
+import { AtlasKitThemeProvider } from '@atlaskit/theme';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import { translate } from '../../i18n';
@@ -34,24 +36,24 @@ class StatelessDialog extends Component {
         /**
          * This is the body of the dialog, the component children.
          */
-        children: React.PropTypes.node,
+        children: PropTypes.node,
 
         /**
          * Disables dismissing the dialog when the blanket is clicked. Enabled
          * by default.
          */
-        disableBlanketClickDismiss: React.PropTypes.bool,
+        disableBlanketClickDismiss: PropTypes.bool,
 
         /**
          * Whether the dialog is modal. This means clicking on the blanket will
          * leave the dialog open. No cancel button.
          */
-        isModal: React.PropTypes.bool,
+        isModal: PropTypes.bool,
 
         /**
          * Disables rendering of the submit button.
          */
-        submitDisabled: React.PropTypes.bool,
+        submitDisabled: PropTypes.bool,
 
         /**
          * Width of the dialog, can be:
@@ -60,7 +62,7 @@ class StatelessDialog extends Component {
          * - integer value for pixel width
          * - string value for percentage
          */
-        width: React.PropTypes.string
+        width: PropTypes.string
     };
 
     /**
@@ -113,25 +115,32 @@ class StatelessDialog extends Component {
      */
     render() {
         return (
-            <div
-                onKeyDown = { this._onKeyDown }
-                ref = { this._setDialogElement }>
-                <ModalDialog
-                    footer = { this._renderFooter() }
-                    header = { this._renderHeader() }
-                    isOpen = { true }
-                    onDialogDismissed = { this._onDialogDismissed }
-                    width = { this.props.width || 'medium' }>
-                    <div>
-                        <form
-                            className = 'modal-dialog-form'
-                            id = 'modal-dialog-form'
-                            onSubmit = { this._onSubmit }>
-                            { this.props.children }
-                        </form>
-                    </div>
-                </ModalDialog>
-            </div>
+
+            /**
+             * Enabled light theme for dialogs until all in-dialog components
+             * support dark theme.
+             */
+            <AtlasKitThemeProvider mode = 'light'>
+                <div
+                    onKeyDown = { this._onKeyDown }
+                    ref = { this._setDialogElement }>
+                    <ModalDialog
+                        footer = { this._renderFooter() }
+                        header = { this._renderHeader() }
+                        isOpen = { true }
+                        onDialogDismissed = { this._onDialogDismissed }
+                        width = { this.props.width || 'medium' }>
+                        <div>
+                            <form
+                                className = 'modal-dialog-form'
+                                id = 'modal-dialog-form'
+                                onSubmit = { this._onSubmit }>
+                                { this.props.children }
+                            </form>
+                        </div>
+                    </ModalDialog>
+                </div>
+            </AtlasKitThemeProvider>
         );
     }
 

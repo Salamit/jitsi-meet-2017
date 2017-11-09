@@ -1,5 +1,11 @@
+// @flow
+
 import { CONFERENCE_FAILED } from '../base/conference';
-import { CONNECTION_ESTABLISHED, CONNECTION_FAILED } from '../base/connection';
+import {
+    CONNECTION_ESTABLISHED,
+    CONNECTION_FAILED,
+    CONNECTION_WILL_CONNECT
+} from '../base/connection';
 import {
     isFatalJitsiConnectionError,
     JitsiConferenceErrors,
@@ -15,7 +21,7 @@ import {
 const logger = require('jitsi-meet-logger').getLogger(__filename);
 
 /**
- * Reduces the Redux actions of the feature overlay.
+ * Reduces the redux actions of the feature overlay.
  */
 ReducerRegistry.register('features/overlay', (state = {}, action) => {
     switch (action.type) {
@@ -28,6 +34,9 @@ ReducerRegistry.register('features/overlay', (state = {}, action) => {
     case CONNECTION_FAILED:
         return _connectionFailed(state, action);
 
+    case CONNECTION_WILL_CONNECT:
+        return _connectionWillConnect(state, action);
+
     case MEDIA_PERMISSION_PROMPT_VISIBILITY_CHANGED:
         return _mediaPermissionPromptVisibilityChanged(state, action);
 
@@ -39,20 +48,28 @@ ReducerRegistry.register('features/overlay', (state = {}, action) => {
 });
 
 /**
- * Reduces a specific Redux action CONFERENCE_FAILED of the feature overlay.
+ * Reduces a specific redux action CONFERENCE_FAILED of the feature overlay.
  *
- * @param {Object} state - The Redux state of the feature overlay.
- * @param {Action} action - The Redux action CONFERENCE_FAILED to reduce.
+ * @param {Object} state - The redux state of the feature overlay.
+ * @param {Action} action - The redux action CONFERENCE_FAILED to reduce.
+ * @private
  * @returns {Object} The new state of the feature overlay after the reduction of
  * the specified action.
- * @private
  */
-function _conferenceFailed(state, { error, message }) {
-    if (error === JitsiConferenceErrors.FOCUS_LEFT
-            || error === JitsiConferenceErrors.VIDEOBRIDGE_NOT_AVAILABLE) {
+function _conferenceFailed(state, { error: { message, name } }) {
+    if (name === JitsiConferenceErrors.FOCUS_LEFT
+            || name === JitsiConferenceErrors.VIDEOBRIDGE_NOT_AVAILABLE) {
         return assign(state, {
             haveToReload: true,
             isNetworkFailure: false,
+
+            // FIXME There is no message associated with CONFERENCE_FAILED at
+            // the time of this writing. In jitsi-meet the action creator
+            // conferenceFailed neither accepts an argument message nor defines
+            // a property message on the error. In lib-jitsi-meet
+            // CONFERENCE_FAILED emissions mostly do not provide a message with
+            // the exception of at least one which provides an Error, not a
+            // string.
             reason: message
         });
     }
@@ -61,30 +78,32 @@ function _conferenceFailed(state, { error, message }) {
 }
 
 /**
- * Reduces a specific Redux action CONNECTION_ESTABLISHED of the feature
+ * Reduces a specific redux action CONNECTION_ESTABLISHED of the feature
  * overlay.
  *
- * @param {Object} state - The Redux state of the feature overlay.
+ * @param {Object} state - The redux state of the feature overlay.
+ * @private
  * @returns {Object} The new state of the feature overlay after the reduction of
  * the specified action.
- * @private
  */
 function _connectionEstablished(state) {
     return set(state, 'connectionEstablished', true);
 }
 
 /**
- * Reduces a specific Redux action CONNECTION_FAILED of the feature overlay.
+ * Reduces a specific redux action CONNECTION_FAILED of the feature overlay.
  *
- * @param {Object} state - The Redux state of the feature overlay.
- * @param {Action} action - The Redux action CONNECTION_FAILED to reduce.
+ * @param {Object} state - The redux state of the feature overlay.
+ * @param {Action} action - The redux action CONNECTION_FAILED to reduce.
+ * @private
  * @returns {Object} The new state of the feature overlay after the reduction of
  * the specified action.
- * @private
  */
-function _connectionFailed(state, { error, message }) {
+function _connectionFailed(state, { error }) {
     if (isFatalJitsiConnectionError(error)) {
-        logger.error(`XMPP connection error: ${message}`);
+        const { message } = error;
+
+        logger.error(`FATAL XMPP connection error: ${message}`);
 
         return assign(state, {
             haveToReload: true,
@@ -92,7 +111,7 @@ function _connectionFailed(state, { error, message }) {
             // From all of the cases above only CONNECTION_DROPPED_ERROR is
             // considered a network type of failure.
             isNetworkFailure:
-                error === JitsiConnectionErrors.CONNECTION_DROPPED_ERROR,
+                error.name === JitsiConnectionErrors.CONNECTION_DROPPED_ERROR,
             reason: `xmpp-conn-dropped: ${message}`
         });
     }
@@ -101,29 +120,52 @@ function _connectionFailed(state, { error, message }) {
 }
 
 /**
- * Reduces a specific Redux action MEDIA_PERMISSION_PROMPT_VISIBILITY_CHANGED of
- * the feature overlay.
+ * Reduces a specific redux action CONNECTION_WILL_CONNECT in the feature
+ * overlay. Clears the redux state related to the XMPP connection's status.
  *
- * @param {Object} state - The Redux state of the feature overlay.
- * @param {Action} action - The Redux action to reduce.
- * @returns {Object} The new state of the feature overlay after the reduction of
- * the specified action.
+ * @param {Object} state - The redux state of the feature overlay.
+ * @param {Action} action - The redux action to reduce.
  * @private
+ * @returns {Object} The new state of the feature overlay after reducing the
+ * specified {@code action} in the feature overlay.
  */
-function _mediaPermissionPromptVisibilityChanged(state, action) {
+function _connectionWillConnect(
+        state,
+        action) { // eslint-disable-line no-unused-vars
     return assign(state, {
-        browser: action.browser,
-        isMediaPermissionPromptVisible: action.isVisible
+        connectionEstablished: undefined,
+        haveToReload: undefined,
+        isNetworkFailure: undefined,
+        reason: undefined
     });
 }
 
 /**
- * Reduces a specific Redux action SUSPEND_DETECTED of the feature overlay.
+ * Reduces a specific redux action MEDIA_PERMISSION_PROMPT_VISIBILITY_CHANGED of
+ * the feature overlay.
  *
- * @param {Object} state - The Redux state of the feature overlay.
+ * @param {Object} state - The redux state of the feature overlay.
+ * @param {Action} action - The redux action to reduce.
+ * @private
  * @returns {Object} The new state of the feature overlay after the reduction of
  * the specified action.
+ */
+function _mediaPermissionPromptVisibilityChanged(
+        state,
+        { browser, isVisible }) {
+    return assign(state, {
+        browser,
+        isMediaPermissionPromptVisible: isVisible
+    });
+}
+
+/**
+ * Reduces a specific redux action SUSPEND_DETECTED of the feature overlay.
+ *
+ * @param {Object} state - The redux state of the feature overlay.
  * @private
+ * @returns {Object} The new state of the feature overlay after the reduction of
+ * the specified action.
  */
 function _suspendDetected(state) {
     return set(state, 'suspendDetected', true);

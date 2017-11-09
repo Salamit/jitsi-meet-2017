@@ -1,5 +1,6 @@
 import Button from '@atlaskit/button';
-import { FieldText } from '@atlaskit/field-text';
+import { FieldTextStateless as TextField } from '@atlaskit/field-text';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import { translate } from '../../base/i18n';
@@ -20,12 +21,12 @@ class ShareLinkForm extends Component {
         /**
          * Invoked to obtain translated strings.
          */
-        t: React.PropTypes.func,
+        t: PropTypes.func,
 
         /**
          * The value to be displayed and copied into the clipboard.
          */
-        toCopy: React.PropTypes.string
+        toCopy: PropTypes.string
     };
 
     /**
@@ -70,8 +71,7 @@ class ShareLinkForm extends Component {
                 </label>
                 <div className = 'form-control__container'>
                     <div className = 'form-control__input-container'>
-                        <FieldText
-                            compact = { true }
+                        <TextField
                             id = 'inviteLinkRef'
                             isLabelHidden = { true }
                             isReadOnly = { true }
@@ -85,7 +85,6 @@ class ShareLinkForm extends Component {
                     <Button
                         appearance = 'default'
                         onClick = { this._onClick }
-                        shouldFitContainer = { true }
                         type = 'button'>
                         { t('dialog.copy') }
                     </Button>
@@ -113,8 +112,8 @@ class ShareLinkForm extends Component {
     }
 
     /**
-     * This is a no-op function used to stub out FieldText's onChange in order
-     * to prevent FieldText from printing prop type validation errors. FieldText
+     * This is a no-op function used to stub out TextField's onChange in order
+     * to prevent TextField from printing prop type validation errors. TextField
      * is used as a trigger for the dropdown in {@code ShareLinkForm} to get the
      * desired AtlasKit input look for the UI.
      *

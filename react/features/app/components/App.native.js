@@ -1,15 +1,16 @@
 /* global __DEV__ */
 
-import React from 'react';
+import PropTypes from 'prop-types';
 import { Linking } from 'react-native';
 
 import '../../analytics';
+import '../../authentication';
 import { Platform } from '../../base/react';
 import '../../mobile/audio-mode';
 import '../../mobile/background';
+import '../../mobile/callkit';
 import '../../mobile/external-api';
 import '../../mobile/full-screen';
-import '../../mobile/network-activity';
 import '../../mobile/permissions';
 import '../../mobile/proximity';
 import '../../mobile/wake-lock';
@@ -35,7 +36,7 @@ export class App extends AbstractApp {
          * page is rendered when the {@link App} is not at a location (URL)
          * identifying a Jitsi Meet conference/room.
          */
-        welcomePageEnabled: React.PropTypes.bool
+        welcomePageEnabled: PropTypes.bool
     };
 
     /**

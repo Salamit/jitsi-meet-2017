@@ -14,35 +14,35 @@ var config = { // eslint-disable-line no-unused-vars
 
     hosts: {
         // XMPP domain.
-        domain: 'jitsi-meet.example.com',
+        domain: 'meet.meetrix.xyz',
 
         // XMPP MUC domain. FIXME: use XEP-0030 to discover it.
-        muc: 'conference.jitsi-meet.example.com',
+        muc: 'conference.meet.meetrix.xyz',
 
         // When using authentication, domain for guest users.
         //anonymousdomain: 'guest.example.com',
 
         // Domain for authenticated users. Defaults to <domain>.
-        //authdomain: 'jitsi-meet.example.com',
+        //authdomain: 'meet.meetrix.xyz',
 
         // Jirecon recording component domain.
-        //jirecon: 'jirecon.jitsi-meet.example.com',
+        //jirecon: 'jirecon.meet.meetrix.xyz',
 
         // Call control component (Jigasi).
-        //call_control: 'callcontrol.jitsi-meet.example.com',
+        call_control: 'callcontrol.meet.meetrix.xyz',
 
         // Focus component domain. Defaults to focus.<domain>.
-        //focus: 'focus.jitsi-meet.example.com',
+        //focus: 'focus.meet.meetrix.xyz',
     },
 
     // BOSH URL. FIXME: use XEP-0156 to discover it.
-    bosh: '//jitsi-meet.example.com/http-bind',
+    bosh: '//meet.meetrix.xyz/http-bind',
 
     // The name of client node advertised in XEP-0115 'c' stanza
     clientNode: 'http://jitsi.org/jitsimeet',
 
     // The real JID of focus participant - can be overridden here
-    //focusUserJid: 'focus@auth.jitsi-meet.example.com',
+    //focusUserJid: 'focus@auth.meet.meetrix.xyz',
 
 
     // Testing / experimental features.

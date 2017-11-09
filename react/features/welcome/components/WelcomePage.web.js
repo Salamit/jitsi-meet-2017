@@ -31,14 +31,15 @@ class WelcomePage extends AbstractWelcomePage {
                 interfaceConfig.GENERATE_ROOMNAMES_ON_WELCOME_PAGE
         };
 
-        // Bind event handlers so they are only bound once for every instance.
+        // Bind event handlers so they are only bound once per instance.
         this._onDisableWelcomeChange = this._onDisableWelcomeChange.bind(this);
         this._onKeyDown = this._onKeyDown.bind(this);
         this._onRoomChange = this._onRoomChange.bind(this);
     }
 
     /**
-     * This method is executed when comonent is mounted.
+     * Implements React's {@link Component#componentDidMount()}. Invoked
+     * immediately after this component is mounted.
      *
      * @inheritdoc
      * @returns {void}
@@ -84,7 +85,7 @@ class WelcomePage extends AbstractWelcomePage {
     }
 
     /**
-     * Handles <tt>change</tt> event of the checkbox which allows specifying
+     * Handles {@code change} event of the checkbox which allows specifying
      * whether the WelcomePage is disabled.
      *
      * @param {Event} event - The (HTML) Event which details the change such as

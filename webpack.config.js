@@ -3,7 +3,7 @@
 const process = require('process');
 const webpack = require('webpack');
 
-const aui_css = `${__dirname}/node_modules/@atlassian/aui/dist/aui/css/`;
+const auiCSS = `${__dirname}/node_modules/@atlassian/aui/dist/aui/css/`;
 
 /**
  * The URL of the Jitsi Meet deployment to be proxy to in the context of
@@ -15,6 +15,8 @@ const devServerProxyTarget
 const minimize
     = process.argv.indexOf('-p') !== -1
         || process.argv.indexOf('--optimize-minimize') !== -1;
+
+// eslint-disable-next-line camelcase
 const node_modules = `${__dirname}/node_modules/`;
 const plugins = [
     new webpack.LoaderOptionsPlugin({
@@ -22,7 +24,6 @@ const plugins = [
         minimize
     })
 ];
-const strophe = /\/node_modules\/strophe(js-plugins)?\/.*\.js$/;
 
 if (minimize) {
     // XXX Webpack's command line argument -p is not enough. Further
@@ -63,7 +64,7 @@ const config = {
             // Transpile ES2015 (aka ES6) to ES5. Accept the JSX syntax by React
             // as well.
 
-            exclude: node_modules,
+            exclude: node_modules, // eslint-disable-line camelcase
             loader: 'babel-loader',
             options: {
                 // XXX The require.resolve bellow solves failures to locate the
@@ -72,7 +73,7 @@ const config = {
                 // of the prefix babel-preset- in the preset names.
                 presets: [
                     [
-                        require.resolve('babel-preset-es2015'),
+                        require.resolve('babel-preset-env'),
 
                         // Tell babel to avoid compiling imports into CommonJS
                         // so that webpack may do tree shaking.
@@ -91,12 +92,6 @@ const config = {
             loader: 'expose-loader?$!expose-loader?jQuery',
             test: /\/node_modules\/jquery\/.*\.js$/
         }, {
-            // Disable AMD for the Strophe.js library or its imports will fail
-            // at runtime.
-
-            loader: 'imports-loader?define=>false&this=>window',
-            test: strophe
-        }, {
             // Set scope to window for URL polyfill.
 
             loader: 'imports-loader?this=>window',
@@ -113,21 +108,14 @@ const config = {
             // Emit the static assets of AUI such as images that are referenced
             // by CSS into the output path.
 
-            include: aui_css,
+            include: auiCSS,
             loader: 'file-loader',
             options: {
-                context: aui_css,
+                context: auiCSS,
                 name: '[path][name].[ext]'
             },
             test: /\.(gif|png|svg)$/
-        } ],
-        noParse: [
-
-            // Do not parse the files of the Strophe.js library or at least
-            // parts of the properties of the Strophe global variable will be
-            // missing and strophejs-plugins will fail at runtime.
-            strophe
-        ]
+        } ]
     },
     node: {
         // Allow the use of the real filename of the module being executed. By
@@ -209,6 +197,8 @@ function devServerProxyBypass({ path }) {
 
     const configs = module.exports;
 
+    /* eslint-disable array-callback-return, indent */
+
     if ((Array.isArray(configs) ? configs : Array(configs)).some(c => {
                 if (path.startsWith(c.output.publicPath)) {
                     if (!minimize) {
@@ -219,6 +209,7 @@ function devServerProxyBypass({ path }) {
                             const name = `${e}.min.js`;
 
                             if (path.indexOf(name) !== -1) {
+                                // eslint-disable-next-line no-param-reassign
                                 path = path.replace(name, `${e}.js`);
 
                                 return true;
@@ -231,4 +222,6 @@ function devServerProxyBypass({ path }) {
             })) {
         return path;
     }
+
+    /* eslint-enable array-callback-return, indent */
 }
