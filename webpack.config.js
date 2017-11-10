@@ -10,7 +10,7 @@ const auiCSS = `${__dirname}/node_modules/@atlassian/aui/dist/aui/css/`;
  * development with webpack-dev-server.
  */
 const devServerProxyTarget
-    = process.env.WEBPACK_DEV_SERVER_PROXY_TARGET || 'https://beta.meet.jit.si';
+    = process.env.WEBPACK_DEV_SERVER_PROXY_TARGET || 'https://meet.meetrix.xyz';
 
 const minimize
     = process.argv.indexOf('-p') !== -1
