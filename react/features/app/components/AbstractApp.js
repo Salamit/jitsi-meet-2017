@@ -97,16 +97,11 @@ export class AbstractApp extends Component {
         const { dispatch } = this._getStore();
 
         const script = document.createElement('script');
-        script.src = 'libs/together.js';
-        //script.async = true;
-        document.head.appendChild(script);
 
-        const button = document.createElement('button');
-        button.value = 'TogetherJS';
-        button.type = 'submit';
-        button.onClick = 'TogetherJS(this); return false';
-        //script.async = true;
-        document.body.appendChild(button);
+        script.src = 'libs/together.js';
+
+        //  script.async = true;
+        document.head.appendChild(script);
         dispatch(appWillMount(this));
 
         // FIXME I believe it makes more sense for a middleware to dispatch
