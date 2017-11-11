@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-equals-spacing,max-len */
 /* @flow */
 
 import React, { Component } from 'react';
@@ -14,7 +15,7 @@ declare var interfaceConfig: Object;
  *
  * @extends Component
  */
-export default class LargeVideo extends Component {
+export default class LargeVideo extends Component<*> {
     /**
      * Implements React's {@link Component#render()}.
      *

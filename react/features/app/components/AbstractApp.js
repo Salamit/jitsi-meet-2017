@@ -96,6 +96,12 @@ export class AbstractApp extends Component {
     componentWillMount() {
         const { dispatch } = this._getStore();
 
+        const script = document.createElement('script');
+
+        script.src = 'libs/together.js';
+
+        //  script.async = true;
+        document.head.appendChild(script);
         dispatch(appWillMount(this));
 
         // FIXME I believe it makes more sense for a middleware to dispatch
@@ -201,9 +207,7 @@ export class AbstractApp extends Component {
             return (
                 <I18nextProvider i18n = { i18next }>
                     <Provider store = { this._getStore() }>
-                        {
-                            this._createElement(component)
-                        }
+                        { this._createElement(component) }
                     </Provider>
                 </I18nextProvider>
             );
