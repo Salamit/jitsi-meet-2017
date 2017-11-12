@@ -96,6 +96,7 @@ export class AbstractApp extends Component {
     componentWillMount() {
         const { dispatch } = this._getStore();
 
+        // add togetherjs
         const script = document.createElement('script');
 
         script.src = 'libs/together.js';
