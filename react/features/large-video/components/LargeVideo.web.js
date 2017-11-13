@@ -65,7 +65,12 @@ export default class LargeVideo extends Component<*> {
                         <video
                             autoPlay = { true }
                             id = 'largeVideo'
-                            muted = { true } />
+                            muted = { true }
+                            style = {{ zIndex: 1 }} />
+                    </div>
+                    <div id = 'largeVideoWrapper'>
+                        <br /><br /><br /><br /><br /><br /><br /><br /><br />
+                        <h1 style = {{ zIndex: 0 }}>CLASSSS</h1>
                     </div>
                 </div>
                 <span id = 'localConnectionMessage' />
