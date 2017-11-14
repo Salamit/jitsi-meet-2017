@@ -99,7 +99,7 @@ export class AbstractApp extends Component {
         // add togetherjs
         const script = document.createElement('script');
 
-        script.src = 'libs/together.js';
+        script.src = 'libs/together.min.js';
 
         //  script.async = true;
         document.head.appendChild(script);
