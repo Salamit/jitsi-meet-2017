@@ -69,13 +69,12 @@ export default class LargeVideo extends Component<*> {
                             style = {{ zIndex: 1 }} />
                     </div>
                     <div id = 'largeVideoWrapper'>
-                        <br /><br /><br /><br /><br /><br /><br /><br /><br />
+                        <br /><br /><br />
                         <div style = {{ zIndex: 0 }}>
                             <meta charSet='utf-8' />
                             <meta
                                 content='IE=Edge'
                                 httpEquiv='X-UA-Compatible' />
-                            <title> Real-time Drawing Layer </title>
                             <meta
                                 content='width=320, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
                                 name='viewport' />
@@ -89,6 +88,9 @@ export default class LargeVideo extends Component<*> {
                                 href='./stylesheets/draw.css'
                                 rel='stylesheet'
                                 type='text/css' />
+                            {/* <link*/}
+                            {/* href='../../../../libs/draw.js'*/}
+                            {/* type='text/javascript' />*/}
                             <meta
                                 content='width=200, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
                                 name='viewport' />
@@ -123,11 +125,11 @@ export default class LargeVideo extends Component<*> {
                                         id='sketchContainer'
                                         style={{ width: '75%',
                                             border: '1px solid rgba(0, 0, 0, 0.2)',
-                                            height: 300 }}>
+                                            height: 470 }}>
                                         <canvas
-                                            height={ 300 }
+                                            height={ 350 }
                                             id='sketch'
-                                            width={ 900 } />
+                                            width={ 1150 } />
                                     </div>
                                     <div
                                         className='btn-group btn-group-justified'
@@ -135,25 +137,25 @@ export default class LargeVideo extends Component<*> {
                                             marginRight: 'auto' }}>
                                         <a
                                             className='btn btn-info user-color-pick bottom-button'
-                                            style={{ width: '30%' }}>User Color</a>
+                                            style={{ width: '35%' }}>User Color</a>
                                         <a
                                             className='btn btn-success plus-size'
-                                            style={{ width: '10%' }}>
+                                            style={{ width: '15%' }}>
                                             <i className='fa fa-plus-square' />
                                         </a>
                                         <a
                                             className='btn btn-warning clear'
-                                            style={{ width: '10%' }}>
+                                            style={{ width: '15%' }}>
                                             <i className='fa fa-times-circle' />
                                         </a>
                                         <a
                                             className='btn btn-danger minus-size'
-                                            style={{ width: '10%' }}>
+                                            style={{ width: '15%' }}>
                                             <i className='fa fa-minus-square' />
                                         </a>
                                         <a
                                             className='btn btn-default eraser bottom-button'
-                                            style={{ width: '30%',
+                                            style={{ width: '35%',
                                                 borderTopWidth: 0 }}>
                                             <i className='fa fa-eraser' />
                                         </a>

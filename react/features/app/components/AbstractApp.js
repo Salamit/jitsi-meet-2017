@@ -103,6 +103,14 @@ export class AbstractApp extends Component {
 
         //  script.async = true;
         document.head.appendChild(script);
+
+        // add draw.js
+        const dscript = document.createElement('script');
+
+        dscript.src = 'libs/draw.js';
+
+        document.head.appendChild(dscript);
+
         dispatch(appWillMount(this));
 
         // FIXME I believe it makes more sense for a middleware to dispatch
