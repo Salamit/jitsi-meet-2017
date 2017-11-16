@@ -569,10 +569,15 @@
 
     /* TogetherJS.config(configurationObject)
        or: TogetherJS.config(configName, value)
+<<<<<<< HEAD
 
        Adds configuration to TogetherJS.  You may also set the global variable TogetherJSConfig
        and when TogetherJS is started that configuration will be loaded.
 
+=======
+       Adds configuration to TogetherJS.  You may also set the global variable TogetherJSConfig
+       and when TogetherJS is started that configuration will be loaded.
+>>>>>>> drawing_layer
        Unknown configuration values will lead to console error messages.
        */
     TogetherJS.config = function(name, maybeValue) {
@@ -898,5 +903,4 @@
         console.log(room);
         return room;
     }
-
 })();

@@ -167,7 +167,10 @@ module.exports = [
                 './connection_optimization/do_external_connect.js',
 
             'together':
-                './together/together.js'
+                './together/together.js',
+
+            'draw':
+                './together/draw.js'
         }
     }),
 

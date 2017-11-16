@@ -34,6 +34,7 @@ deploy-appbundle:
 		$(BUILD_DIR)/device_selection_popup_bundle.min.js \
 		$(BUILD_DIR)/device_selection_popup_bundle.min.map \
 		$(BUILD_DIR)/together.min.js \
+		$(BUILD_DIR)/draw.min.js \
 		$(OUTPUT_DIR)/analytics.js \
 		$(DEPLOY_DIR)
 
