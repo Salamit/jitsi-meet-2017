@@ -49,7 +49,7 @@ componentWillMount() {
 
         // add draw.js
         const dscript = document.createElement('script');
-        dscript.src = 'javascript/draw.js';
+        dscript.src = 'libs/draw.min.js';
         document.head.appendChild(dscript);
    }
 
