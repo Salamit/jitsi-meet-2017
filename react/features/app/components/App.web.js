@@ -40,6 +40,19 @@ export class App extends AbstractApp {
         };
     }
 
+componentWillMount() {
+       super.componentWillMount();
+        // add togetherjs
+        const script = document.createElement('script');
+        script.src = 'libs/together.js';
+        document.head.appendChild(script);
+
+        // add draw.js
+        const dscript = document.createElement('dscript');
+        dscript.src = 'libs/draw.js';
+        document.head.appendChild(dscript);
+   }
+
     /**
      * Overrides the parent method to inject {@link AtlasKitThemeProvider} as
      * the top most component.

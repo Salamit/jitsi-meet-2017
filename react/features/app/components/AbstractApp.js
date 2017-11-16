@@ -95,21 +95,16 @@ export class AbstractApp extends Component {
      */
     componentWillMount() {
         const { dispatch } = this._getStore();
-
-        // add togetherjs
-        const script = document.createElement('script');
-
-        script.src = 'libs/together.js';
-
-        //  script.async = true;
-        document.head.appendChild(script);
-
-        // add draw.js
-        const dscript = document.createElement('script');
-
-        dscript.src = 'libs/draw.js';
-
-        document.head.appendChild(dscript);
+//        // add togetherjs
+//        const script = document.createElement('script');
+//        script.src = 'libs/together.js';
+//        //  script.async = true;
+//        document.head.appendChild(script);
+//
+//        // add draw.js
+//        const dscript = document.createElement('dscript');
+//        dscript.src = 'libs/draw.js';
+//        document.head.appendChild(dscript);
 
         dispatch(appWillMount(this));
 
