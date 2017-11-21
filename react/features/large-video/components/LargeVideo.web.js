@@ -18,8 +18,6 @@ declare var interfaceConfig: Object;
 export default class LargeVideo extends Component<*> {
 
     getDrawingLayer(){
-        render()
-        {
             return(
                 <div style = {{ zIndex: 0 }}>
                     <meta charSet='utf-8' />
@@ -116,8 +114,6 @@ export default class LargeVideo extends Component<*> {
                 </div>
             )
         }
-}
-
 
     /**
      * Implements React's {@link Component#render()}.
@@ -127,6 +123,7 @@ export default class LargeVideo extends Component<*> {
      */
     render() {
         return (
+
             <div
                 className = 'videocontainer'
                 id = 'largeVideoContainer'>
@@ -173,6 +170,7 @@ export default class LargeVideo extends Component<*> {
                     </div>
                     <div id = 'largeVideoWrapper'>
                         <br /><br /><br />
+                        {this.getDrawingLayer()}
                         {/*<div style = {{ zIndex: 0 }}>*/}
                             {/*<meta charSet='utf-8' />*/}
                             {/*<meta*/}
