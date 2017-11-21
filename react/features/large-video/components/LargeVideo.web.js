@@ -100,7 +100,7 @@ export default class LargeVideo extends Component<*> {
                                     id='sketchapp'
                                     style={{ marginLeft: 0,
                                         marginRight: 0 }}>
-                                    <h1 style={{ marginBottom: 20 }}>Let's Draw</h1>
+                                    {/*<h1 style={{ marginBottom: 20 }}>Let's Draw</h1>*/}
                                     <a
                                         className='pull-right tjsbutton'
                                         onClick='TogetherJS(this); return false;'>
@@ -123,11 +123,11 @@ export default class LargeVideo extends Component<*> {
                                     <div className='clearfix' />
                                     <div
                                         id='sketchContainer'
-                                        style={{ width: '75%',
+                                        style={{ width: '100%',
                                             border: '1px solid rgba(0, 0, 0, 0.2)',
                                             height: 470 }}>
                                         <canvas
-                                            height={ 350 }
+                                            height={ 500 }
                                             id='sketch'
                                             width={ 1150 } />
                                     </div>

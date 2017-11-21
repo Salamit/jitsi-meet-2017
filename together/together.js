@@ -84,7 +84,7 @@
         includeHashInUrl: false,
 
         // When true, the WebRTC-based mic/chat will be disabled
-        disableWebRTC: false,
+        disableWebRTC: true,
 
         // When true, youTube videos will synchronize
         youtube: true,
