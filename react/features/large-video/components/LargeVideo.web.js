@@ -69,7 +69,7 @@ export default class LargeVideo extends Component<*> {
                             style = {{ zIndex: 1 }} />
                     </div>
                     <div id = 'largeVideoWrapper'>
-                        <br /><br />
+                        <br /><br /><br />
                         <DrawingLayer/>
                     </div>
                 </div>

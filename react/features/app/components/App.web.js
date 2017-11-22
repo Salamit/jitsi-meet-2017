@@ -47,10 +47,10 @@ componentWillMount() {
         script.src = 'libs/together.min.js';
         document.head.appendChild(script);
 
-        // add draw.js
-        const dscript = document.createElement('script');
-        dscript.src = 'libs/draw.min.js';
-        document.head.appendChild(dscript);
+        // // add draw.js
+        // const dscript = document.createElement('script');
+        // dscript.src = 'libs/draw.min.js';
+        // document.head.appendChild(dscript);
    }
 
     /**
