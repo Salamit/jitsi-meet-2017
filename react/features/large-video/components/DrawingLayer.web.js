@@ -62,8 +62,7 @@ export default class DrawingLayer extends Component{
                             <a className='btn btn-success color-picker'>Green</a>
                             <a className='btn btn-warning color-picker'>Yellow</a>
                             <a className='btn btn-danger color-picker'>Red</a>
-                            <a
-                                className='btn btn-success color-picker black-pick upper-button'
+                            <a className='btn btn-default color-picker black-pick upper-button'
                                 style={{ borderBottomWidth: 0 }}>Black</a>
                         </div>
                         <div className='clearfix' />
@@ -71,9 +70,9 @@ export default class DrawingLayer extends Component{
                             id='sketchContainer'
                             style={{ width: '100%',
                                 border: '1px solid rgba(0, 0, 0, 0.2)',
-                                height: 470 }}>
+                                height: '80%' }}>
                             <canvas
-                                height={ 500 }
+                                height={ '80%' }
                                 id='sketch'
                                 width={ '100%' } />
                         </div>
