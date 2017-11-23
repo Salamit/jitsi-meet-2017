@@ -164,7 +164,13 @@ module.exports = [
                 './react/features/always-on-top/index.js',
 
             'do_external_connect':
-                './connection_optimization/do_external_connect.js'
+                './connection_optimization/do_external_connect.js',
+
+            'together':
+                './together/together.js',
+
+            'draw':
+                './together/draw.js'
         }
     }),
 
@@ -172,7 +178,12 @@ module.exports = [
     // JitsiMeetExternalAPI).
     Object.assign({}, config, {
         entry: {
-            'external_api': './modules/API/external/index.js'
+            'external_api': [
+
+                // XXX Required by at least IE11 at the time of this writing.
+                'babel-polyfill',
+                './modules/API/external/index.js'
+            ]
         },
         output: Object.assign({}, config.output, {
             library: 'JitsiMeetExternalAPI',

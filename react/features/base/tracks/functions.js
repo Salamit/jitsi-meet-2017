@@ -45,6 +45,7 @@ export function createLocalTracksF(
     }
 
     const {
+        constraints,
         firefox_fake_device, // eslint-disable-line camelcase
         resolution
     } = store.getState()['features/base/config'];
@@ -53,6 +54,7 @@ export function createLocalTracksF(
         JitsiMeetJS.createLocalTracks(
             {
                 cameraDeviceId,
+                constraints,
                 desktopSharingExtensionExternalInstallation:
                     options.desktopSharingExtensionExternalInstallation,
                 desktopSharingSources: options.desktopSharingSources,
@@ -73,7 +75,8 @@ export function createLocalTracksF(
                 tracks.forEach(track =>
                     track.on(
                         JitsiTrackEvents.NO_DATA_FROM_SOURCE,
-                        APP.UI.showTrackNotWorkingDialog.bind(null, track)));
+                        APP.UI.showTrackNotWorkingDialog.bind(
+                            null, track.isAudioTrack())));
             }
 
             return tracks;

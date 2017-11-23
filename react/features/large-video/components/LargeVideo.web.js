@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-equals-spacing,max-len,react-native/no-inline-styles */
 /* @flow */
 
 import React, { Component } from 'react';
@@ -14,7 +15,7 @@ declare var interfaceConfig: Object;
  *
  * @extends Component
  */
-export default class LargeVideo extends Component {
+export default class LargeVideo extends Component<*> {
     /**
      * Implements React's {@link Component#render()}.
      *
@@ -64,7 +65,54 @@ export default class LargeVideo extends Component {
                         <video
                             autoPlay = { true }
                             id = 'largeVideo'
-                            muted = { true } />
+                            muted = { true }
+                            style = {{ zIndex: 1 }} />
+                    </div>
+                    <div id = 'largeVideoWrapper'>
+                        <br /><br /><br /><br /><br /><br /><br />
+                        <div style = {{ zIndex: 0 }}>
+                            <meta charSet='utf-8' />
+                            <meta
+                                content='IE=Edge'
+                                httpEquiv='X-UA-Compatible' />
+                            <meta
+                                content='width=320, user-scalable=no'
+                                name='viewport' />
+                            <link
+                                href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'
+                                rel='stylesheet' />
+                            <link
+                                href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'
+                                rel='stylesheet' />
+                            <link
+                                href='./stylesheets/draw.css'
+                                rel='stylesheet' />
+                            <div
+                                className='container'
+                                style = {{ height: '100%',
+                                    width: '100%' }}>
+                                <section
+                                    className='body-content row'
+                                    id='sketchapp'
+                                    style={{ height: '100%',
+                                        marginLeft: 0,
+                                        marginRight: 0,
+                                        width: '100%' }}>
+                                    <h1 style={{ marginBottom: 20 }}>Let's Draw</h1>
+                                    <div className='clearfix' />
+                                    <div
+                                        id='sketchContainer'
+                                        style={{ width: '100%',
+                                            border: '1px solid rgba(0, 0, 0, 0.2)',
+                                            height: 470 }}>
+                                        <canvas
+                                            height={ 350 }
+                                            id='sketch'
+                                            width={ 1150 } />
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <span id = 'localConnectionMessage' />

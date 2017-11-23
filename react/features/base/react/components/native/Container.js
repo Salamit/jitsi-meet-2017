@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 
 import React from 'react';
 import {
@@ -7,7 +7,6 @@ import {
     View
 } from 'react-native';
 
-import { Platform } from '../../';
 import AbstractContainer from '../AbstractContainer';
 
 /**
@@ -39,30 +38,20 @@ export default class Container extends AbstractContainer {
 
         // visible
         if (!visible) {
-            // FIXME: Whatever I try ends up failing somehow on Android, give up
-            // for now, hoping display: 'none' solves this.
-            if (Platform.OS === 'android') {
-                return null;
-            }
-
-            // Intentionally hide this Container without destroying it.
-            // TODO Replace with display: 'none' supported in RN >= 0.43.
-            props.style = {
-                ...props.style,
-                height: 0,
-                width: 0
-            };
+            return null;
         }
 
         let element = super._render(View, props);
 
         // onClick & touchFeedback
-        if (visible && (onClick || touchFeedback)) {
-            element = React.createElement(
-                touchFeedback ? TouchableHighlight : TouchableWithoutFeedback,
-                { onPress: onClick },
-                element
-            );
+        if (element && (onClick || touchFeedback)) {
+            element
+                = React.createElement(
+                    touchFeedback
+                        ? TouchableHighlight
+                        : TouchableWithoutFeedback,
+                    { onPress: onClick },
+                    element);
         }
 
         return element;

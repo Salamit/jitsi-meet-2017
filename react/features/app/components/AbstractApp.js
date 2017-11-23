@@ -95,7 +95,6 @@ export class AbstractApp extends Component {
      */
     componentWillMount() {
         const { dispatch } = this._getStore();
-
         dispatch(appWillMount(this));
 
         // FIXME I believe it makes more sense for a middleware to dispatch

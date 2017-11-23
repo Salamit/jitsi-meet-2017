@@ -18,7 +18,7 @@ declare var APP: Object;
  * @class ToolbarButton
  * @extends AbstractToolbarButton
  */
-class ToolbarButton extends Component {
+class ToolbarButton extends Component<*> {
     button: Object;
 
     _onClick: Function;
@@ -103,7 +103,7 @@ class ToolbarButton extends Component {
      * @inheritdoc
      * @returns {ReactElement}
      */
-    render(): ReactElement<*> {
+    render(): React$Element<*> {
         const { button, t, tooltipPosition } = this.props;
         const props = {
             ...this.props,
@@ -128,7 +128,11 @@ class ToolbarButton extends Component {
 
             children = ( // eslint-disable-line no-extra-parens
                 <InlineDialog
-                    content = { t(dataAttr, dataInterpolate) }
+                    content = {
+                        <div className = 'button-popover-message'>
+                            { t(dataAttr, dataInterpolate) }
+                        </div>
+                    }
                     isOpen = { Boolean(popupConfig) }
                     position = { position }>
                     { buttonComponent }
