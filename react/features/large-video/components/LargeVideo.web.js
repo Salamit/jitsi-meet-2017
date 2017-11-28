@@ -6,7 +6,7 @@ import { Watermarks } from '../../base/react';
 import { VideoQualityLabel } from '../../video-quality';
 import { RecordingLabel } from '../../recording';
 import DrawingLayer from './DrawingLayer.web';
-import Tracking from "./Tracking";
+
 
 declare var interfaceConfig: Object;
 
@@ -72,7 +72,6 @@ export default class LargeVideo extends Component<*> {
                     <div id = 'largeVideoWrapper'>
                         <br /><br /><br />
                         <DrawingLayer/>
-                        <Tracking/>
                     </div>
                 </div>
                 <span id = 'localConnectionMessage' />
