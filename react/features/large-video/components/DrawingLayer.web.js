@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 
 import { Watermarks } from '../../base/react';
+// import VideoTracker from "./VideoTracker";
 
 declare var interfaceConfig: Object;
 
@@ -67,7 +68,8 @@ export default class DrawingLayer extends Component{
                             <canvas
                                 height={ '80%' }
                                 id='sketch'
-                                width={ '100%' } />
+                                width={ '100%' }>
+                            </canvas>
                         </div>
                         <div
                             className='btn-group btn-group-justified'

@@ -16,7 +16,7 @@ declare var interfaceConfig: Object;
  *
  * @extends Component
  */
-export default class VideoTracker extends Component {
+export default class BackgroundTracker extends Component {
     constructor(props){
         super(props)
         this.state={
@@ -45,7 +45,6 @@ export default class VideoTracker extends Component {
     render() {
         return (
             <div style = {{ zIndex: 0 }} className="demo-frame">
-                <h1>Learning how to analyse video</h1>
                 <div className="demo-container">
                     <video ref="video" width="640" height="480" hidden preload autoPlay loop muted></video>
                     <canvas ref="inputCanvas" width="640" height="480" hidden></canvas>
