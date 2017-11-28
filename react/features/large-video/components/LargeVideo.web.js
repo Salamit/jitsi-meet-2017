@@ -6,7 +6,7 @@ import { Watermarks } from '../../base/react';
 import { VideoQualityLabel } from '../../video-quality';
 import { RecordingLabel } from '../../recording';
 import DrawingLayer from './DrawingLayer.web';
-import Tracking from "./Tracking";
+import ObjectTracker from "./ObjectTracker";
 
 declare var interfaceConfig: Object;
 
@@ -67,12 +67,13 @@ export default class LargeVideo extends Component<*> {
                             autoPlay = { true }
                             id = 'largeVideo'
                             muted = { true }
-                            style = {{ zIndex: 1 }} />
+                            style = {{ zIndex: 1 }}>
+                        </video>
                     </div>
                     <div id = 'largeVideoWrapper'>
                         <br /><br /><br />
                         <DrawingLayer/>
-                        <Tracking/>
+                        <ObjectTracker/>
                     </div>
                 </div>
                 <span id = 'localConnectionMessage' />
