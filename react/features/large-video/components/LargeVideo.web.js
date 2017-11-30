@@ -62,18 +62,18 @@ export default class LargeVideo extends Component<*> {
                          * hide/show them.
                          */
                     }
-                    <div id = 'largeVideoWrapper'>
-                        <video
-                            autoPlay = { true }
-                            id = 'largeVideo'
-                            muted = { true }
-                            style = {{ zIndex: 1 }}>
-                        </video>
-                    </div>
+                    {/*<div id = 'largeVideoWrapper'>*/}
+                        {/*<video*/}
+                            {/*autoPlay = { true }*/}
+                            {/*id = 'largeVideo'*/}
+                            {/*muted = { true }*/}
+                            {/*style = {{ zIndex: 1 }}>*/}
+                        {/*</video>*/}
+                    {/*</div>*/}
+                    <ObjectTracker/>
                     <div id = 'largeVideoWrapper'>
                         <br /><br /><br />
                         <DrawingLayer/>
-                        <ObjectTracker/>
                     </div>
                 </div>
                 <span id = 'localConnectionMessage' />
