@@ -116,7 +116,7 @@ componentDidMount(){
             render(){
                 return(
                     <div id = 'largeVideoWrapper'>
-                        {/*<img id="img-tracker"/>*/}
+                        <img id="img-tracker"/>
                         <video
                         autoPlay = { true }
                         id = 'largeVideo'
