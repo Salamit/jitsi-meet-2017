@@ -30,13 +30,6 @@ export default class DrawingLayer extends Component{
                 <link
                     href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'
                     rel='stylesheet' />
-                <link
-                    href='./stylesheets/draw.css'
-                    rel='stylesheet'
-                    type='text/css' />
-                {/* <link*/}
-                {/* href='../../../../libs/draw.js'*/}
-                {/* type='text/javascript' />*/}
                 <meta
                     content='width=100%, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
                     name='viewport' />
