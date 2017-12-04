@@ -11,7 +11,7 @@
  *
  * @type {string}
  */
-export const DEFAULT_AVATAR_RELATIVE_PATH = 'images/avatar1.png';
+export const DEFAULT_AVATAR_RELATIVE_PATH = 'images/avatar.png';
 
 /**
  * The local participant might not have real ID until she joins a conference,
