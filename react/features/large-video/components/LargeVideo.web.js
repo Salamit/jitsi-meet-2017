@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import { Watermarks } from '../../base/react';
 import { VideoQualityLabel } from '../../video-quality';
 import { RecordingLabel } from '../../recording';
+import { SocketIo } from 'Socketio';
 
 declare var interfaceConfig: Object;
 
@@ -30,7 +31,7 @@ export default class LargeVideo extends Component {
                     <div id = 'sharedVideoIFrame' />
                 </div>
                 <div id = 'etherpad' />
-
+                <SocketIo />
                 <Watermarks />
 
                 <div id = 'dominantSpeaker'>

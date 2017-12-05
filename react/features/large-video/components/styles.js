@@ -26,5 +26,15 @@ export default createStyleSheet({
         position: 'absolute',
         right: 0,
         top: 0
+    },
+
+    dimScreen: {
+        position: fixed,
+        padding: 0,
+        margin: 0,
+        top: 0,
+        left: 0,
+        flex: 1,
+        background: rgba(255, 255, 255, 0.5)
     }
 });
