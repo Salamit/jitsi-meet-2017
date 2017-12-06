@@ -5,9 +5,9 @@ import React, { Component } from 'react';
 import { Watermarks } from '../../base/react';
 import { VideoQualityLabel } from '../../video-quality';
 import { RecordingLabel } from '../../recording';
-import { SocketIo } from 'Socketio';
+import SocketIo from './Socketio';
 
-declare var interfaceConfig: Object;
+// declare var interfaceConfig: Object;
 
 /**
  * Implements a React {@link Component} which represents the large video (a.k.a.

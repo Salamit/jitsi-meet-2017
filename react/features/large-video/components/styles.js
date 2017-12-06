@@ -28,13 +28,15 @@ export default createStyleSheet({
         top: 0
     },
 
+    /**
+     * Obtian clicks from the entire browser window.
+     */
     dimScreen: {
-        position: fixed,
+        position: 'absolute',
         padding: 0,
         margin: 0,
         top: 0,
         left: 0,
-        flex: 1,
-        background: rgba(255, 255, 255, 0.5)
+        flex: 1
     }
 });

@@ -17,7 +17,7 @@ class Socketio extends Component {
             y: 0,
             username: 'react',
             room: 'test',
-            endpoint: 'http://192.168.43.235:3030'
+            endpoint: 'https://192.168.8.110:3030'
         };
         this.socket = socketIOClient(this.state.endpoint);
     }
@@ -38,6 +38,11 @@ class Socketio extends Component {
     }
 
     // onclick function-----------------------------------------------------
+    /**
+     * Emits onclick coordinates on browser
+     *
+     * @private
+     */
     _onMouseClick(e) {
         this.setState({ x: e.pageX,
             y: e.pageY });
@@ -53,13 +58,19 @@ class Socketio extends Component {
             username: this.username,
             room: this.room });
     }
+
+    /**
+     * Implements React's {@link Component#render()}.
+     *
+     * @inheritdoc
+     * @returns {ReactElement}
+     */
     render() {
         return (
             <div
                 className = 'dimScreen'
                 id = 'cross'
-                // onClick = { this._onMouseClick.bind(this) }
-            />
+                onClick = { this._onMouseClick.bind(this) } />
         );
     }
 }
