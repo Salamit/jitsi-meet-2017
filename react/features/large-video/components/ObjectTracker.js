@@ -29,29 +29,28 @@ export default class ObjectTracker extends Component {
         objects.setInitialScale(4);
         objects.setStepSize(2);
         objects.setEdgesDensity(0.1);
-        tracking.track('#largeVideo', objects,{ camera: true });
+        tracking.track('#largeVideo', objects);
         objects.on('track', function(event) {
+
             event.data.forEach(function(rect) {
                 window.plot(rect.x, rect.y, rect.width, rect.height);
             });
         });
 
-        window.plot = function(x, y, w, h) {
-            var rect = document.createElement('div');
-            document.querySelector('.demo-container').appendChild(rect);
-            rect.style.border = '2px solid #a64ceb';
-            //rect.style.left = '-1000px';
-            rect.style.position = 'absolute';
-            //rect.style.top = '-1000px';
-            rect.classList.add('rect');
-            rect.style.zIndex = '2';
-            rect.style.width = w + 'px';
-            rect.style.height = h + 'px';
-            rect.style.left = (video.offsetLeft + x) + 'px';
-            rect.style.top = (video.offsetTop + y) + 'px';
-            console.log("x="+x);
-            console.log("y="+y);
-        };
+                window.plot = function(x, y, w, h) {
+                    var rect = document.createElement('div');
+                    document.querySelector('.demo-container').appendChild(rect);
+                    rect.style.border = '2px solid #a64ceb';
+                    rect.style.position = 'absolute';
+                    rect.classList.add('rect');
+                    rect.style.zIndex = '2';
+                    rect.style.width = w + 'px';
+                    rect.style.height = h + 'px';
+                    rect.style.left =  y + 'px';
+                    rect.style.top = x + 'px';
+                    console.log("x="+x);
+                    console.log("y="+y);
+                };
     };
 
 //video tracker
