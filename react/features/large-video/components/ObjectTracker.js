@@ -108,7 +108,7 @@ export default class ObjectTracker extends Component {
             context.clearRect(0, 0, canvas.width, canvas.height);
 
             event.data.forEach(function(rect) {
-                context.strokeStyle = 'blue';
+                context.strokeStyle = 'red';
                 context.strokeRect(rect.x, rect.y, rect.width, rect.height);
                 context.font = '8px Helvetica';
                 context.fillStyle = "#fff";
