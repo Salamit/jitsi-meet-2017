@@ -203,7 +203,7 @@
     cursor: hand;
     object-fit: cover;
 }
-
+#canvas,
 #largeVideo,
 #largeVideoWrapper,
 #largeVideoContainer {
@@ -215,6 +215,7 @@
     box-shadow: 0 0 20px -2px #444;
 }
 
+#canvas,
 #largeVideo,
 #largeVideoWrapper
 {
@@ -619,3 +620,14 @@
 //.rect{
 //    background-color: yellow;
 //}
+
+#canvas{
+    z-index:5;
+    //background-color: yellow;
+    position: relative;
+    width:100%;
+    height:100%;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+}
