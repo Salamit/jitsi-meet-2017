@@ -35,11 +35,11 @@ export default class ObjectTracker extends Component {
 
             event.data.forEach(function(rect) {
                 context.strokeStyle = 'red';
-                context.strokeRect(((canvas.width)/2-rect.x), rect.y, rect.width, rect.height);
+                context.strokeRect(((canvas.width/2)-rect.x), rect.y, rect.width, rect.height);
                 context.font = '8px Helvetica';
                 context.fillStyle = "#fff";
-                context.fillText('x: ' + (canvas.width-rect.x) + 'px', (canvas.width-rect.x) + rect.width + 5, rect.y + 11);
-                context.fillText('y: ' + rect.y + 'px', (canvas.width-rect.x) + rect.width + 5, rect.y + 22);
+                // context.fillText('x: ' + (canvas.width-rect.x) + 'px', (canvas.width-rect.x) + rect.width + 5, rect.y + 11);
+                // context.fillText('y: ' + rect.y + 'px', (canvas.width-rect.x) + rect.width + 5, rect.y + 22);
                 console.log("x="+rect.x);
                 console.log("y="+rect.y);
             });
