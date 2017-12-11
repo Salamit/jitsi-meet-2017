@@ -163,8 +163,6 @@ export default class ObjectTracker extends Component {
             <div class="demo-container">
                 <div id = 'largeVideoWrapper'>
                     <br/><br/>
-                    {/*<img id="img-tracker"*/}
-                    {/*src="https://www.clarabridge.com/wp-content/uploads/2014/11/customersentiment_face5.png"/>*/}
                     <video
                         autoPlay = { true }
                         id = 'largeVideo'

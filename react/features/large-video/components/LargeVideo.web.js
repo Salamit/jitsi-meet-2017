@@ -5,6 +5,8 @@ import React, { Component } from 'react';
 import { Watermarks } from '../../base/react';
 import { VideoQualityLabel } from '../../video-quality';
 import { RecordingLabel } from '../../recording';
+// import DrawingLayer from './DrawingLayer.web';
+import ObjectTracker from "./ObjectTracker";
 
 declare var interfaceConfig: Object;
 
@@ -14,7 +16,7 @@ declare var interfaceConfig: Object;
  *
  * @extends Component
  */
-export default class LargeVideo extends Component {
+export default class LargeVideo extends Component<*> {
     /**
      * Implements React's {@link Component#render()}.
      *
@@ -60,11 +62,9 @@ export default class LargeVideo extends Component {
                          * hide/show them.
                          */
                     }
+                    <ObjectTracker/>
                     <div id = 'largeVideoWrapper'>
-                        <video
-                            autoPlay = { true }
-                            id = 'largeVideo'
-                            muted = { true } />
+                        <br /><br /><br />
                     </div>
                 </div>
                 <span id = 'localConnectionMessage' />
