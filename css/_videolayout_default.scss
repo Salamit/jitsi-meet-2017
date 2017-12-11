@@ -65,6 +65,15 @@
             float: left;
             pointer-events: all;
         }
+
+        /**
+         * Need to overwrite the background for the top toolbar dark theme div
+         * wrapper needed before we're able to move all top toolbar indicators
+         * creation to react.
+         */
+        .ckAJgx {
+            background: none;
+        }
     }
 
     &__toolbar {
@@ -87,21 +96,12 @@
          * positioning depends on the trigger (indicator icon).
          */
         .indicator {
+            margin-left: 5px;
             margin-top: $toolbarIconMargin;
         }
 
         .indicator-container:nth-child(1) .indicator {
             margin-left: $toolbarIconMargin;
-        }
-
-        .connection-indicator,
-        div.indicator-container,
-         {
-            margin-right: 4px;
-        }
-
-        div.indicator:last-child {
-            margin-right: 0;
         }
 
         .indicator-container {
@@ -138,16 +138,11 @@
                 left: 0;
                 @include transform(translate(0, -50%));
 
-                &_empty
+                &_empty,
+                &_lost
                 {
                     color: #8B8B8B;/*#FFFFFF*/
                     overflow: hidden;
-                }
-
-                &_lost
-                {
-                    color: #8B8B8B;
-                    overflow: visible;
                 }
 
                 &_full
@@ -163,11 +158,14 @@
                 }
             }
 
-            .icon-connection,
-            .icon-connection-lost {
+            .icon-gsm-bars {
                 cursor: pointer;
                 font-size: 1em;
             }
+        }
+
+        .hide-connection-indicator {
+            display: none;
         }
     }
 
@@ -205,7 +203,7 @@
     cursor: hand;
     object-fit: cover;
 }
-
+#canvas,
 #largeVideo,
 #largeVideoWrapper,
 #largeVideoContainer {
@@ -217,6 +215,7 @@
     box-shadow: 0 0 20px -2px #444;
 }
 
+#canvas,
 #largeVideo,
 #largeVideoWrapper
 {
@@ -351,11 +350,31 @@
 }
 
 .raisehandindicator {
-  background: $raiseHandBg;
+    background: $raiseHandBg;
 }
 
 .connection-indicator {
-  background: $connectionIndicatorBg;
+    background: $connectionIndicatorBg;
+
+    &.status-high {
+        background: green;
+    }
+
+    &.status-med {
+        background: #FFD740;
+    }
+
+    &.status-lost {
+        background: gray;
+    }
+
+    &.status-low {
+        background: #BF2117;
+    }
+
+    &.status-other {
+        background: $connectionIndicatorBg;
+    }
 }
 
 .remote-video-menu-trigger,
@@ -555,9 +574,9 @@
 #remoteConnectionMessage {
     opacity: .80;
     text-shadow:    0px 0px 1px rgba(0,0,0,0.3),
-                    0px 1px 1px rgba(0,0,0,0.3),
-                    1px 0px 1px rgba(0,0,0,0.3),
-                    0px 0px 1px rgba(0,0,0,0.3);
+    0px 1px 1px rgba(0,0,0,0.3),
+    1px 0px 1px rgba(0,0,0,0.3),
+    0px 0px 1px rgba(0,0,0,0.3);
 
     background: rgba(0,0,0,.5);
     border-radius: 5px;
@@ -583,7 +602,32 @@
     color: #FFF;
     opacity: .80;
     text-shadow:    0px 0px 1px rgba(0,0,0,0.3),
-                    0px 1px 1px rgba(0,0,0,0.3),
-                    1px 0px 1px rgba(0,0,0,0.3),
-                    0px 0px 1px rgba(0,0,0,0.3);
+    0px 1px 1px rgba(0,0,0,0.3),
+    1px 0px 1px rgba(0,0,0,0.3),
+    0px 0px 1px rgba(0,0,0,0.3);
+}
+//#img-tracker{
+//    position: relative;
+//    border-radius: 8px;
+//    z-index: 5;
+//    width: 80%;
+//    height: 80%;
+//    //background-image: url("../images/avatar.png.copy");
+//    background-color: yellow;
+//    background-repeat: no-repeat;
+//    background-position: center;
+//}
+//.rect{
+//    background-color: yellow;
+//}
+
+#canvas{
+    z-index:5;
+    //background-color: yellow;
+    position: relative;
+    width:100%;
+    height:100%;
+    //top: 0px;
+    //left: 0px;
+    //right: 0px;
 }

@@ -92,6 +92,7 @@
         }
 
         &:hover, &:active {
+            color: $toolbarButtonColor;
             cursor: pointer;
             text-decoration: none;
         }
