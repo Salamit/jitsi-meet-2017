@@ -24,9 +24,9 @@ export default class ObjectTracker extends Component {
         var context = canvas.getContext('2d');
 
         var tracker = new tracking.ObjectTracker('face');
-        tracker.setInitialScale(4);
-        tracker.setStepSize(2);
-        tracker.setEdgesDensity(0.1);
+        tracker.setInitialScale(1);
+        tracker.setStepSize(1);
+        tracker.setEdgesDensity(0.2);
 
         tracking.track('#largeVideo', tracker, { camera: true });
 
