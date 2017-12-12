@@ -105,3 +105,7 @@ Instructions on how to build it can be found [here](doc/mobile.md).
 ## Acknowledgements
 
 Jitsi Meet started out as a sample conferencing application using Jitsi Videobridge. It was originally developed by then ESTOS' developer Philipp Hancke who then contributed it to the community where development continues with joint forces!
+
+## Branches
+
+smart_glass: This branch contains the Android application modified for smart glass (Vuzix M300) enabling  to open back camera of it.
