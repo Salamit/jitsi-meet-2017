@@ -108,6 +108,13 @@ public class MainActivity extends JitsiMeetActivity {
                 }
             });
         }
+                Bundle config = new Bundle();
+                config.putBoolean("startWithAudioMuted", false);
+                config.putBoolean("startWithVideoMuted", false);
+                Bundle urlObject = new Bundle();
+                urlObject.putBundle("config", config);
+                urlObject.putString("url", "https://meet.nxtbase.net/smart");
+                view.loadURLObject(urlObject);
 
         return view;
     }
