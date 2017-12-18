@@ -3,34 +3,27 @@
 var config = { // eslint-disable-line no-unused-vars
 //    configLocation: './config.json', // see ./modules/HttpConfigFetch.js
     hosts: {
-        domain: 'jitsi-meet.example.com',
-        //anonymousdomain: 'guest.example.com',
-        //authdomain: 'jitsi-meet.example.com',  // defaults to <domain>
-        muc: 'conference.jitsi-meet.example.com', // FIXME: use XEP-0030
-        //jirecon: 'jirecon.jitsi-meet.example.com',
-        //call_control: 'callcontrol.jitsi-meet.example.com',
-        //focus: 'focus.jitsi-meet.example.com', // defaults to 'focus.jitsi-meet.example.com'
-    },
-    testing: {
-        /**
-         * P2P test mode disables automatic switching to P2P when there are 2
-         * participants in the conference.
-         */
-        p2pTestMode: false,
+        domain: 'video2.campcite.com',
+        anonymousdomain: 'guest.video2.campcite.com',
+        //authdomain: 'video2.campcite.com',  // defaults to <domain>
+        muc: 'conference.video2.campcite.com', // FIXME: use XEP-0030
+        //jirecon: 'jirecon.video2.campcite.com',
+        //call_control: 'callcontrol.video2.campcite.com',
+        //focus: 'focus.video2.campcite.com', // defaults to 'focus.video2.campcite.com'
     },
 //  getroomnode: function (path) { return 'someprefixpossiblybasedonpath'; },
 //  useStunTurn: true, // use XEP-0215 to fetch STUN and TURN server
 //  useIPv6: true, // ipv6 support. use at your own risk
     useNicks: false,
-    bosh: '//jitsi-meet.example.com/http-bind', // FIXME: use xep-0156 for that
+    bosh: '//video2.campcite.com/http-bind', // FIXME: use xep-0156 for that
     clientNode: 'http://jitsi.org/jitsimeet', // The name of client node advertised in XEP-0115 'c' stanza
-    //focusUserJid: 'focus@auth.jitsi-meet.example.com', // The real JID of focus participant - can be overridden here
+    //focusUserJid: 'focus@auth.video2.campcite.com', // The real JID of focus participant - can be overridden here
     //defaultSipNumber: '', // Default SIP number
 
+    // Desktop sharing method. Can be set to 'ext', 'webrtc' or false to disable.
+    desktopSharingChromeMethod: 'ext',
     // The ID of the jidesha extension for Chrome.
-    desktopSharingChromeExtId: null,
-    // Whether desktop sharing should be disabled on Chrome.
-    desktopSharingChromeDisabled: true,
+    desktopSharingChromeExtId: 'doolcheokjmblldomglfjohbgcplpakk',
     // The media sources to use when using screen sharing with the Chrome
     // extension.
     desktopSharingChromeSources: ['screen', 'window', 'tab'],
@@ -41,13 +34,13 @@ var config = { // eslint-disable-line no-unused-vars
     // extension is required.
     desktopSharingFirefoxExtId: null,
     // Whether desktop sharing should be disabled on Firefox.
-    desktopSharingFirefoxDisabled: false,
+    desktopSharingFirefoxDisabled: true,
     // The maximum version of Firefox which requires a jidesha extension.
     // Example: if set to 41, we will require the extension for Firefox versions
     // up to and including 41. On Firefox 42 and higher, we will run without the
     // extension.
     // If set to -1, an extension will be required for all versions of Firefox.
-    desktopSharingFirefoxMaxVersionExtRequired: 51,
+    desktopSharingFirefoxMaxVersionExtRequired: -1,
     // The URL to the Firefox extension for desktop sharing.
     desktopSharingFirefoxExtensionURL: null,
 
@@ -57,18 +50,20 @@ var config = { // eslint-disable-line no-unused-vars
     webrtcIceTcpDisable: false,
 
     openSctp: true, // Toggle to enable/disable SCTP channels
-
-    // Disable hiding of remote thumbnails when in a 1-on-1 conference call.
-    disable1On1Mode: false,
     disableStats: false,
     disableAudioLevels: false,
     channelLastN: -1, // The default value of the channel attribute last-n.
-    enableRecording: false,
+    adaptiveLastN: false,
+    //disableAdaptiveSimulcast: false,
+    enableRecording: true,
+    recordingType: 'jibri',
+    hiddenDomain: 'recorder.video2.campcite.com',
     enableWelcomePage: true,
     //enableClosePage: false, // enabling the close page will ignore the welcome
                               // page redirection when call is hangup
     disableSimulcast: false,
-//    requireDisplayName: true, // Forces the participants that doesn't have display name to enter it when they enter the room.
+    logStats: false, // Enable logging of PeerConnection stats via the focus
+    requireDisplayName: true, // Forces the participants that doesn't have display name to enter it when they enter the room.
 //    startAudioMuted: 10, // every participant after the Nth will start audio muted
 //    startVideoMuted: 10, // every participant after the Nth will start video muted
 //    defaultLanguage: "en",
@@ -79,47 +74,11 @@ var config = { // eslint-disable-line no-unused-vars
     'During that time service will not be available. ' +
     'Apologise for inconvenience.',*/
     disableThirdPartyRequests: false,
-    // The minumum value a video's height (or width, whichever is smaller) needs
-    // to be in order to be considered high-definition.
     minHDHeight: 540,
     // If true - all users without token will be considered guests and all users
     // with token will be considered non-guests. Only guests will be allowed to
     // edit their profile.
     enableUserRolesBasedOnToken: false,
     // Suspending video might cause problems with audio playback. Disabling until these are fixed.
-    disableSuspendVideo: true,
-    // disables or enables RTX (RFC 4588) (defaults to false).
-    disableRtx: false,
-    // Sets the preferred resolution (height) for local video. Defaults to 720.
-    resolution: 720,
-    // Peer-To-Peer mode: used (if enabled) when there are just 2 participants.
-    p2p: {
-        // Enables peer to peer mode. When enabled system will try to establish
-        // direct connection given that there are exactly 2 participants in
-        // the room. If that succeeds the conference will stop sending data
-        // through the JVB and use the peer to peer connection instead. When 3rd
-        // participant joins the conference will be moved back to the JVB
-        // connection.
-        enabled: true,
-        // The STUN servers that will be used in the peer to peer connections
-        //  useStunTurn: true, // use XEP-0215 to fetch STUN and TURN server
-        stunServers: [
-            { urls: "stun:stun.l.google.com:19302" },
-            { urls: "stun:stun1.l.google.com:19302" },
-            { urls: "stun:stun2.l.google.com:19302" }
-        ],
-        // If set to true, it will prefer to use H.264 for P2P calls (if H.264
-        // is supported).
-        preferH264: true
-        // How long we're going to wait, before going back to P2P after
-        // the 3rd participant has left the conference (to filter out page reload)
-        //backToP2PDelay: 5
-    },
-    // Information about the jitsi-meet instance we are connecting to, including the
-    // user region as seen by the server.
-    deploymentInfo: {
-        //shard: "shard1",
-        //region: "europe",
-        //userRegion: "asia"
-    }
+    disableSuspendVideo: true
 };
