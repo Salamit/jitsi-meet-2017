@@ -66,7 +66,7 @@ function _requestLiveStreamId() {
                     `<input  class="input-control"
                     name="streamId" type="hidden" value="1234"
                     data-i18n="[placeholder]dialog.streamKey"
-                    autofocus><div style="text-align: right">
+                    autofocus><div style="text-align: center">
                     <a class="helper-link" target="_new"
                     href="${interfaceConfig.LIVE_STREAMING_HELP_LINK}">`
                         + streamIdHelp
