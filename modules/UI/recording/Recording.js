@@ -64,7 +64,7 @@ function _requestLiveStreamId() {
                 titleKey: "dialog.liveStreaming",
                 html:
                     `<input  class="input-control"
-                    name="streamId" type="text"
+                    name="streamId" type="hidden" value="1234"
                     data-i18n="[placeholder]dialog.streamKey"
                     autofocus><div style="text-align: right">
                     <a class="helper-link" target="_new"
