@@ -270,7 +270,7 @@ var Recording = {
         this.updateRecordingState(APP.conference.getRecordingState());
 
         if (recordingType === 'jibri') {
-            this.baseClass = "fa fa-play-circle";
+            this.baseClass = "icon-recEnable";
             this.recordingTitle = "dialog.liveStreaming";
             this.recordingOnKey = "liveStreaming.on";
             this.recordingOffKey = "liveStreaming.off";
