@@ -1,3 +1,4 @@
+//teset
 var interfaceConfig = { // eslint-disable-line no-unused-vars
     CANVAS_EXTRA: 104,
     CANVAS_RADIUS: 0,
@@ -78,7 +79,7 @@ var interfaceConfig = { // eslint-disable-line no-unused-vars
     LOCAL_THUMBNAIL_RATIO: 16/9, //16:9
     REMOTE_THUMBNAIL_RATIO: 1, //1:1
     // Documentation reference for the live streaming feature.
-    LIVE_STREAMING_HELP_LINK: "http://www.dmlp.org/legal-guide/recording-phone-calls-and-conversations",
+    LIVE_STREAMING_HELP_LINK: "https://goo.gl/7D1iCn",
 
     /**
      * Whether the mobile app Jitsi Meet is to be promoted to participants
